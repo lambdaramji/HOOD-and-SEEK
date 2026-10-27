@@ -1,0 +1,64 @@
+# Flutter CI — system.yml 과 같은 방식: 매번 돌되 관련 없으면 verify를 if로 skip (skip = 성공으로 집계).
+# Ruleset 필수 status check는 `flutter_result` 하나.
+name: Flutter CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  flutter_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.c.outputs.run }}
+    steps:
+      - id: c
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ "${{ github.event_name }}" != "pull_request" ]]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          gh api "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" --paginate --jq '.[].filename' > changed.txt
+          cat changed.txt
+          if grep -qE '^(flutter_app/|packages/hood_seek_protocol/|contracts/|profiles/|\.github/workflows/flutter\.yml$)' changed.txt; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  flutter_verify:
+    needs: flutter_changes
+    if: needs.flutter_changes.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: flutter_app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Check Dart formatting
+        run: |
+          dart format lib test
+          git diff --exit-code -- lib test
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build web
+
+  flutter_result:
+    needs: [flutter_changes, flutter_verify]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          RESULTS: ${{ toJson(needs) }}
+        run: |
+          echo "$RESULTS" | jq -r 'to_entries[] | "\(.key): \(.value.result)"'
+          echo "$RESULTS" | jq -e '[.[] | .result] | all(. == "success" or . == "skipped")' >/dev/null

@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-26",
+  "voice_binary_sha256": "70839f9c9f096f21fed7a213525a550b077ee1a1451ce6a624569f53264d43a1",
+  "mode_during_test": "observe",
+  "playbacks": {
+    "WARNING": 10,
+    "TOUCH_FEEDBACK": 10
+  },
+  "completed": 20,
+  "sink_verified": 20,
+  "usb_playback_running": 20,
+  "capture_route_verified_before_every_play": 20,
+  "source_verified_startup": 1,
+  "capture_ready": 1,
+  "asr_calls": 6,
+  "drop": 6,
+  "none": 0,
+  "executable_candidates": 0,
+  "node_candidates": 0,
+  "voice_transmitted": 0,
+  "overlong_drops": 0,
+  "node_restarts": 0,
+  "output_and_volume_unchanged": true,
+  "human_listening": "both sounds confirmed by user",
+  "original_publish_mode_restored": true,
+  "raw_microphone_file_recorded": false,
+  "elapsed_first_to_last_play_s": 82.84,
+  "hashes": {
+    "TOUCH_FEEDBACK.wav": "ce6b3fa264e41d08b4637677447e3423e077aae54fed43cb630db72d45210a24",
+    "WARNING.wav": "f54ff680df8d3d84a49b350c70c86c99a18e1d234cf6bd68815100804b2ad6b2"
+  },
+  "asr_model_sha256": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51",
+  "asr_tokens_sha256": "f449eb28dc567533d7fa59be34e2abca8784f771850c78a47fb731a31429a1dc",
+  "vad_model_sha256": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987",
+  "app_start_evidence": {
+    "sha256": "3e9121f2cd0022c9f357d2aba4ebfc5d97b9587c5e59573221bb5cdc91facfa2",
+    "same_as": "prior WARNING.wav and installed legacy WARNING.wav",
+    "prior_date": "2026-10-25",
+    "prior_file_reentry_count": 10,
+    "prior_executable_candidates": 0,
+    "prior_voice_binary_sha256": "1c38613a7bf12c612c32a85b8c434863b2b4bf1f08e75f166beff4526ac8f1fc",
+    "current_binary_differs": true,
+    "counted_in_current_20": false,
+    "scope": "Unmodified PCM and same model/threshold evidence reuse only; not a fresh current-binary APP_START trial"
+  }
+}

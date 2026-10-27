@@ -1,0 +1,31 @@
+# 에디터 간 들여쓰기·줄바꿈 통일. 기존 코드(2칸 들여쓰기, LF)에 맞춤.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+
+[*.{c,cc,cpp,h,hpp,ino}]
+indent_size = 2
+
+[*.dart]
+indent_size = 2
+
+[*.{json,yml,yaml}]
+indent_size = 2
+
+[*.py]
+indent_size = 4
+
+[*.sh]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+[*.md]
+trim_trailing_whitespace = false

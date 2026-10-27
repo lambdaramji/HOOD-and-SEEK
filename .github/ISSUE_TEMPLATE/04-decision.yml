@@ -1,0 +1,60 @@
+name: "의사결정 요청 (Decision)"
+description: 팀 승인이 필요한 선택. 짧으면 이 이슈로 끝내고, 길면 docs/decision/P-0xx 문서를 만들고 여기서 추적합니다.
+title: "[결정] "
+labels: ["type: decision", "needs-decision"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **확정하지 말고 제안합니다.** 선택지 → 장단점 → 권장안 → 결정권자 순서. 결정이 나면 `docs/ai-integration-decisions.md` 대장에 한 줄 추가하고 이 이슈를 닫습니다.
+        10/20 18:00 계약 동결 전 결정이 필요한 것은 마일스톤 `G1`에 넣습니다.
+  - type: input
+    id: id
+    attributes:
+      label: 결정 ID
+      description: 기존 번호가 있으면 그것, 없으면 비워 두고 PM이 부여
+      placeholder: "Q-S5-1 또는 P-011"
+  - type: textarea
+    id: question
+    attributes:
+      label: 무엇을 정해야 하는가
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: 선택지와 장단점
+      value: |
+        | 선택지 | 장점 | 단점 | 영향 받는 곳 |
+        |---|---|---|---|
+        | A. | | | |
+        | B. | | | |
+    validations:
+      required: true
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: 권장안과 근거
+      description: 근거에는 출처 표기 [실측]/[문서]/[추정]
+    validations:
+      required: true
+  - type: input
+    id: decider
+    attributes:
+      label: 결정권자
+      placeholder: "남현지 (PM), 정정인"
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: 언제까지
+      description: 이 날짜를 넘기면 권장안으로 진행한다고 적어 두면 회의 없이 넘어갈 수 있습니다.
+      placeholder: "2026-10-20 18:00 (계약 동결). 미응답 시 권장안 B로 진행"
+  - type: checkboxes
+    id: invariant
+    attributes:
+      label: 확인
+      options:
+        - label: CLAUDE.md 안전 불변식을 깨는 선택지는 "불변식 위반"으로 표시만 했고 권장하지 않았습니다
+          required: true

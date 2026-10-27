@@ -1,0 +1,12 @@
+{
+  "v": 2,
+  "type": "voice",
+  "src": "voice",
+  "seq": 1,
+  "t_ms": 1,
+  "p": {
+    "intent": "IND_SET",
+    "text": "하이엘지, 인덕션 중불로 해줘",
+    "conf": 0
+  }
+}

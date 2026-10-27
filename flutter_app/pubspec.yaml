@@ -1,0 +1,39 @@
+name: hood_seek
+description: HOOD&SEEK kitchen safety monitoring UI.
+publish_to: "none"
+version: 0.4.0+4
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sqlite3: ^2.9.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  # 알림 클립: state.alert 값, OFFLINE, APP_START, TOUCH_FEEDBACK — 목록은 README.
+  # 파일이 없으면 소리 없이 넘어간다(lib/audio/gst_clip_player.dart).
+  assets:
+    - assets/audio/
+    - assets/audio/results/
+
+  # 대체 글꼴. LG EI(저장소 밖, FONT_DIR)를 못 읽으면 이것으로 그린다 — 기기에 한글
+  # 시스템 글꼴이 있다고 기대하지 않는다 (UI 설계 v1 §2.3). SIL OFL 1.1, assets/fonts/OFL.txt.
+  # notofonts/noto-cjk Sans/SubsetOTF/KR 2.004에서 KS X 1001 한글 2,350자와 기호만 남겼다
+  # (pyftsubset, 굵기당 약 0.44 MB). 화면 문구에 그 밖의 한글을 쓰면 대체 글꼴에서는 빈칸으로 나온다.
+  fonts:
+    - family: Noto Sans KR
+      fonts:
+        - asset: assets/fonts/NotoSansKR-Regular.otf
+        - asset: assets/fonts/NotoSansKR-Medium.otf
+          weight: 500
+        - asset: assets/fonts/NotoSansKR-Bold.otf
+          weight: 700

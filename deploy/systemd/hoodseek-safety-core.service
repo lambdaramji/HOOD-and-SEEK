@@ -1,0 +1,24 @@
+# HOOD&SEEK SafetyCore — root 실행 유닛 (설계서 §8.2 Q-S10-1 폴백, #46)
+#
+# 왜 root: ipk 서비스 계정(u0_a…)은 /dev/i2c-1(root:i2c)·/dev/ttyAMA3·5(root:dialout)를 열 수 없다 [실측 #46].
+# 설치 위치: Pi 4 /data/share/usr/lib/systemd/system/ (rootfs는 ro, 이 경로는 systemd unit path에 포함 [실측 #46])
+#   scp deploy/systemd/hoodseek-safety-core.service root@<Pi4>:/data/share/usr/lib/systemd/system/
+# 기동: 재부팅 후 매번 수동 — systemd가 /data 마운트(약 8.7 s) 전에 유닛을 읽어 부팅 자동 기동이 안 된다 [실측 #46].
+#   systemctl daemon-reload && systemctl start hoodseek-safety-core
+#   (#46 결정 (4): 부팅 자동 기동 없음 — LG 공식 경로 미회신, 재부팅 뒤 수동 1회)
+# 실행 파일은 arc install이 깐 ipk의 것을 그대로 쓴다.
+[Unit]
+Description=HOOD&SEEK SafetyCore (root)
+After=dbus.service
+Wants=dbus.service
+# 안전 서비스는 재시작을 포기하지 않는다 (기본값은 10 s 안 5회 실패 시 중단)
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/data/share/usr/atlas/services/com.atlas.HoodSeekSafetyCore1/safetycore
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

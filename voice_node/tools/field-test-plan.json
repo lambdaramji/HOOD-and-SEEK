@@ -1,0 +1,687 @@
+{
+  "status": "pm_configuration_approved_live_tests_pending",
+  "date_kst": "2026-10-24",
+  "issue": 62,
+  "pr": 107,
+  "source_commit": "resolve_git_HEAD_and_freeze_before_first_trial",
+  "source_baseline": "936914dd78f26855a0ebec79728ef5deb34ef1e3",
+  "asr": "SenseVoiceSmall INT8 / sherpa-onnx 1.13.8 / ko ITN greedy CPU4",
+  "vad": {
+    "frame_samples": 512,
+    "start_frames": 7,
+    "end_frames": 17,
+    "preroll_frames": 31,
+    "max_speech_s": 4,
+    "max_buffer_s": 6
+  },
+  "thresholds": {
+    "activation_similarity": 0.6,
+    "target_similarity": 0.6,
+    "action_similarity": 0.7,
+    "intent_margin": 0.1
+  },
+  "publish": false,
+  "conf": "unavailable",
+  "negative_requirement": {
+    "minimum_utterances": 36,
+    "planned": 36,
+    "execution_candidates_max": 0
+  },
+  "ambient_requirement": {
+    "minimum_total_seconds": 300,
+    "quiet_seconds": 150,
+    "noise_seconds": 150,
+    "execution_candidates_max": 0,
+    "actual_condition_review_required": true
+  },
+  "nfr08": {
+    "speaker": "nam_hyeonji",
+    "device": "ReSpeaker Lite USB",
+    "runtime": "Pi5 ATLAS",
+    "fan": "off",
+    "attempts": 25,
+    "minimum_correct": 20,
+    "max_end_to_intent_ms": 3000,
+    "first_attempt_only": true,
+    "required_frequency": {
+      "FAN_SET:3": 5,
+      "FAN_SET:2": 5,
+      "FAN_SET:1": 5,
+      "FAN_OFF": 5,
+      "IND_OFF": 5
+    }
+  },
+  "approvals": {
+    "activation_and_similarity": true,
+    "vad_endpoint": true,
+    "bare_action_question": true,
+    "sensevoice_conf_and_publication": true,
+    "official_scoring": true,
+    "reviewers": false,
+    "contract_reviewer": false
+  },
+  "bare_action_question": "PM approved: direct target+action questions execute; permission/state questions, negation, quote and compound remain non-executable; preserve earlier labels/results",
+  "protocols": {
+    "negative": 36,
+    "ambient": 2,
+    "nfr25": 25,
+    "policy": 2
+  },
+  "official_declaration": "Must be posted to #62 before recording, with binary/model hashes and policy approval links. No auto posting.",
+  "latency": "Same-device intent_monotonic_ns minus capture_audio_origin.sample0_monotonic_ns plus human-annotated original WAV endpoint. VAD estimate reported separately.",
+  "prohibited": [
+    "No live microphone before user start button",
+    "No synthetic silence/noise padding",
+    "No rescore threshold changes after test begins",
+    "No replacing failed formal trials with repeats",
+    "No self-approval or issue closure",
+    "No operational publication before the same frozen configuration passes negative36 and actual ambient300, and Core is handed over for the test"
+  ],
+  "prompts": {
+    "policy": [
+      {
+        "source_id": "Q01",
+        "text": "하이엘지, 인덕션 꺼?",
+        "kind": "policy_diagnostic",
+        "expected": "IND_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요.",
+        "policy_approved": true
+      },
+      {
+        "source_id": "Q02",
+        "text": "하이엘지, 인덕션 켜?",
+        "kind": "policy_diagnostic",
+        "expected": "IND_ON",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요.",
+        "policy_approved": true
+      }
+    ],
+    "negative": [
+      {
+        "source_id": "N01",
+        "text": "오늘 날씨 좋네",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N02",
+        "text": "인덕션 꺼줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N03",
+        "text": "팬을 강풍으로 해줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N04",
+        "text": "후드 팬 꺼줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N05",
+        "text": "푸드코트에서 밥 먹자",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N06",
+        "text": "부대 앞에서 만나자",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N07",
+        "text": "포드 자동차가 지나간다",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N08",
+        "text": "후드티를 입고 나왔어",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N09",
+        "text": "하이엘지, 푸드코트 위치 알려줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N10",
+        "text": "하이엘지, 포드 자동차 설명해줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N11",
+        "text": "하이엘지, 부대찌개 만드는 법 알려줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N12",
+        "text": "하이엘지, 인덕션 켜지 마",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N13",
+        "text": "하이엘지, 인덕션 끄지 마",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N14",
+        "text": "하이엘지, 팬 끄지 마",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N15",
+        "text": "하이엘지, 화력 올리지 마",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N16",
+        "text": "하이엘지, 화력 내리지 마",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N17",
+        "text": "하이엘지, 팬 멈추지 마",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N18",
+        "text": "하이엘지, 인덕션 켜도 돼?",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N19",
+        "text": "하이엘지, 인덕션 꺼도 돼?",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N20",
+        "text": "하이엘지, 인덕션 켜져 있어?",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N21",
+        "text": "하이엘지, 팬 꺼져 있어?",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N22",
+        "text": "하이엘지, 지금 화력이 몇 단계야?",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N23",
+        "text": "하이엘지, 팬 꺼져 있어",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N24",
+        "text": "하이엘지, 인덕션 켜진 상태야",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N25",
+        "text": "하이엘지, 인덕션 꺼진 상태야",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N26",
+        "text": "하이엘지라고 말하면 팬이 꺼져",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N27",
+        "text": "그 사람이 하이엘지 팬 꺼라고 했어",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N28",
+        "text": "하이엘지, 팬 꺼주고 인덕션 켜",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N29",
+        "text": "하이엘지, 인덕션 켰다가 꺼줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N30",
+        "text": "하이엘지, 후드 강풍 했다가 꺼줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N31",
+        "text": "하이엘지, 팬 한 단계 올려줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N32",
+        "text": "하이엘지, 바람 좀 바꿔줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N33",
+        "text": "하이엘지, 조명 켜줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N34",
+        "text": "하이엘지, 음악 틀어줘",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N35",
+        "text": "하이엘지, 꺼져라는 말은 무슨 뜻이야?",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "N36",
+        "text": "하이엘지, 꺼",
+        "kind": "negative",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요.",
+        "reason": "대상 생략 — PM 결정 3에 따라 NONE"
+      }
+    ],
+    "ambient": [
+      {
+        "source_id": "A01",
+        "text": "150초: 가능한 조용한 상태 유지",
+        "kind": "ambient",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 150,
+        "instruction": "말하지 않고 실제 주변음을 보존합니다."
+      },
+      {
+        "source_id": "A02",
+        "text": "150초: 실제 팬·대화·현장 소음, 시험 명령 말하지 않기",
+        "kind": "ambient",
+        "expected": "NO_EXEC",
+        "value": null,
+        "seconds": 150,
+        "instruction": "말하지 않고 실제 주변음을 보존합니다."
+      }
+    ],
+    "nfr25": [
+      {
+        "source_id": "R11",
+        "text": "하이엘지, 후드 강풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 3,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R12",
+        "text": "하이엘지, 후드 중풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 2,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R13",
+        "text": "하이엘지, 후드 약풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 1,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R14",
+        "text": "하이엘지, 후드 팬 꺼",
+        "kind": "supported",
+        "expected": "FAN_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R15",
+        "text": "하이엘지, 인덕션 꺼",
+        "kind": "supported",
+        "expected": "IND_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R21",
+        "text": "하이엘지, 후드 강풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 3,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R22",
+        "text": "하이엘지, 후드 중풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 2,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R23",
+        "text": "하이엘지, 후드 약풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 1,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R24",
+        "text": "하이엘지, 후드 팬 꺼",
+        "kind": "supported",
+        "expected": "FAN_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R25",
+        "text": "하이엘지, 인덕션 꺼",
+        "kind": "supported",
+        "expected": "IND_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R31",
+        "text": "하이엘지, 후드 강풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 3,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R32",
+        "text": "하이엘지, 후드 중풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 2,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R33",
+        "text": "하이엘지, 후드 약풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 1,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R34",
+        "text": "하이엘지, 후드 팬 꺼",
+        "kind": "supported",
+        "expected": "FAN_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R35",
+        "text": "하이엘지, 인덕션 꺼",
+        "kind": "supported",
+        "expected": "IND_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R41",
+        "text": "하이엘지, 후드 강풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 3,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R42",
+        "text": "하이엘지, 후드 중풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 2,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R43",
+        "text": "하이엘지, 후드 약풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 1,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R44",
+        "text": "하이엘지, 후드 팬 꺼",
+        "kind": "supported",
+        "expected": "FAN_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R45",
+        "text": "하이엘지, 인덕션 꺼",
+        "kind": "supported",
+        "expected": "IND_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R51",
+        "text": "하이엘지, 후드 강풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 3,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R52",
+        "text": "하이엘지, 후드 중풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 2,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R53",
+        "text": "하이엘지, 후드 약풍",
+        "kind": "supported",
+        "expected": "FAN_SET",
+        "value": 1,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R54",
+        "text": "하이엘지, 후드 팬 꺼",
+        "kind": "supported",
+        "expected": "FAN_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      },
+      {
+        "source_id": "R55",
+        "text": "하이엘지, 인덕션 꺼",
+        "kind": "supported",
+        "expected": "IND_OFF",
+        "value": null,
+        "seconds": 15,
+        "instruction": "평소 목소리로 한 번 말하세요. 부정문 끝 마·질문 표현을 생략하지 마세요."
+      }
+    ]
+  },
+  "policy_decision_url": "https://github.com/lambdaramji/HOOD-SEEK/pull/107#pullrequestreview-5637198979",
+  "bare_action_without_target": "NONE; never infer fan or induction",
+  "fan_on_without_level": "FAN_SET value=1; Core preserves fan_min; may lower requested level from 2/3 to 1",
+  "publication_policy": {
+    "negative_and_ambient": "observation only, same frozen head/binary/models/settings",
+    "formal25": "publish only after 36 negatives and actual ambient 300 seconds produce zero execution candidates; otherwise observation only",
+    "default": false
+  },
+  "scoring": "first attempt; matching intent/value and actual audio end-to-intent <=3000ms; if publishing, matched state.voice.accepted=true required; do not compare fan.level"
+}

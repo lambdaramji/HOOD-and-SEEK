@@ -1,0 +1,12 @@
+{"v": 4,"type":"state","src":"core","seq":50544,"t_ms":252700,
+ "p":{"hazard":"fault","presence":"unknown","lock":"locked_danger","lock_release_left_s":null,
+      "fan":{"level":3,"min":3,"requested":3,"ack":true},
+      "induction":{"level":0,"allowed_on":false,"ack":false},
+      "sensors":{"thermal":{"valid":false,"max_c":null,"median_c":null,"metric":null},
+                 "pm":{"valid":true,"pm25":11.0,"tsize":0.66,"baseline":10.5}},
+      "vision":{"fresh":false,"person":false,"cat":false},
+      "voice":{"last_intent":"FAN_SET","value":3,"accepted":true,"reason":null},
+      "reasons":["SENSOR_FAULT","VISION_STALE","IND_NOACK"],
+      "alert":"NONE",
+      "thresholds":{"t_mid":16,"t_high":22,"t_danger":30,"pm_warn":30,"pm_smoke":50,"lock_release_s":10},
+      "uptime_s":1011}}

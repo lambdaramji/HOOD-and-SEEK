@@ -1,0 +1,45 @@
+# actions/labeler v5 — PR이 건드린 경로로 라벨 자동 부착.
+# MQTT 세대 경로와 S10 경로를 함께 적어 두었습니다. 없는 경로는 그냥 안 맞을 뿐입니다.
+"area: safety_core":
+  - changed-files:
+      - any-glob-to-any-file: ["safety_core/**", "pi4_sensor_node/**", "pi5_gateway/**", "packages/hood_seek_protocol/**"]
+"area: vision_node":
+  - changed-files:
+      - any-glob-to-any-file: "vision_node/**"
+"area: voice_node":
+  - changed-files:
+      - any-glob-to-any-file: "voice_node/**"
+"area: flutter_app":
+  - changed-files:
+      - any-glob-to-any-file: "flutter_app/**"
+"area: firmware":
+  - changed-files:
+      - any-glob-to-any-file: "firmware/**"
+"area: contracts":
+  - changed-files:
+      - any-glob-to-any-file: "contracts/**"
+"contract-change":
+  - changed-files:
+      - any-glob-to-any-file: "contracts/**"
+"area: profiles":
+  - changed-files:
+      - any-glob-to-any-file: "profiles/**"
+"area: deploy":
+  - changed-files:
+      - any-glob-to-any-file: "deploy/**"
+"area: docs":
+  - changed-files:
+      - any-glob-to-any-file: ["docs/**", "inbox/**", "*.md"]
+"area: ci":
+  - changed-files:
+      - any-glob-to-any-file: ".github/**"
+# 안전 판정·fail-safe 코드를 건드리면 PM 리뷰 라벨
+"safety-invariant":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "safety_core/src/policy.*"
+          - "safety_core/tests/**"
+          - "profiles/**"
+          - "firmware/**/main.cpp"
+          - "packages/hood_seek_protocol/lib/**"
+          - "pi5_gateway/lib/**"

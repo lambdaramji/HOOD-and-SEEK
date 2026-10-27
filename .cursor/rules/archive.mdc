@@ -1,0 +1,13 @@
+---
+description: Exclude completed and superseded Markdown archives from normal agent context
+alwaysApply: true
+---
+
+# Archive exclusion
+
+Unless the user explicitly asks to inspect archived history, do not list, search, index, open, summarize, cite, or use files under:
+
+- `docs/archive/**`
+- `inbox/archive/**`
+
+Do not automatically follow links into those directories. Use active code and documents as the current source of truth. Follow `ARCHIVE_POLICY.md` for the narrow exceptions and document lifecycle.

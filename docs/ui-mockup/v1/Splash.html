@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<title>HOOD&amp;SEEK — 스플래시 — 시작 화면</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap">
+<style>
+@font-face{font-family:'LG EI Text';font-weight:300;src:url('fonts/LGEIText-Light.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:400;src:url('fonts/LGEIText-Regular.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:500;src:url('fonts/LGEIText-SemiBold.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:600;src:url('fonts/LGEIText-SemiBold.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:700;src:url('fonts/LGEIText-Bold.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Headline';font-weight:100;src:url('fonts/LGEIHeadline-Thin.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Headline';font-weight:300;src:url('fonts/LGEIHeadline-Light.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Headline';font-weight:400;src:url('fonts/LGEIHeadline-Regular.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Headline';font-weight:600;src:url('fonts/LGEIHeadline-SemiBold.woff2') format('woff2');font-display:swap}
+body{margin:0;font-family:'LG EI Text','Noto Sans KR',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+a{color:#1A1A1A;text-decoration:none}a:hover{color:#A50034}
+.hs-num{font-family:'LG EI Headline','LG EI Text','Noto Sans KR',system-ui,sans-serif}
+/* LG 그라디언트 배경 4종 — Tweaks ▸ bg 로 전환 */
+.hs-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-color:#F7E9EA;background-image:radial-gradient(ellipse at 30% 70%,rgba(244,160,170,.85) 0%,rgba(244,160,170,0) 55%),radial-gradient(ellipse at 75% 20%,rgba(255,255,255,.9) 0%,rgba(255,255,255,0) 50%);animation:hs-drift 14s ease-in-out infinite alternate}
+.hs-bg-1 .hs-bg{background-image:url('images/lg-gradient-01.jpg'),radial-gradient(ellipse at 30% 70%,rgba(244,160,170,.85) 0%,rgba(244,160,170,0) 55%)}
+.hs-bg-2 .hs-bg{background-image:url('images/lg-gradient-02.jpg'),radial-gradient(ellipse at 30% 70%,rgba(244,160,170,.85) 0%,rgba(244,160,170,0) 55%)}
+.hs-bg-3 .hs-bg{background-image:url('images/lg-gradient-03.jpg'),radial-gradient(ellipse at 30% 70%,rgba(244,160,170,.85) 0%,rgba(244,160,170,0) 55%)}
+.hs-bg-4 .hs-bg{background-image:url('images/lg-gradient-04.jpg'),radial-gradient(ellipse at 30% 70%,rgba(244,160,170,.85) 0%,rgba(244,160,170,0) 55%)}
+.hs-bg-1{--ink:#1A1A1A;--ink2:rgba(26,26,26,.64);--chip:rgba(255,255,255,.72);--track:rgba(26,26,26,.14);--bar:#A50034;--ring:#A50034;--dot:#1F9E63}
+.hs-bg-2{--ink:#1A1A1A;--ink2:rgba(26,26,26,.66);--chip:rgba(255,255,255,.62);--track:rgba(26,26,26,.16);--bar:#1A1A1A;--ring:#A50034;--dot:#1A1A1A}
+.hs-bg-3{--ink:#FFFFFF;--ink2:rgba(255,255,255,.8);--chip:rgba(255,255,255,.22);--track:rgba(255,255,255,.32);--bar:#FFFFFF;--ring:#FFFFFF;--dot:#FFFFFF}
+.hs-bg-4{--ink:#FFFFFF;--ink2:rgba(255,255,255,.75);--chip:rgba(255,255,255,.14);--track:rgba(255,255,255,.26);--bar:#FFFFFF;--ring:#FFFFFF;--dot:#FFFFFF}
+@keyframes hs-drift{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.06) translate(-1.5%,1%)}}
+@keyframes hs-fadeup{0%{opacity:0;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes hs-markin{0%{opacity:0;transform:scale(.92)}100%{opacity:1;transform:scale(1)}}
+@keyframes hs-ringdraw{0%{stroke-dashoffset:138}100%{stroke-dashoffset:0}}
+@keyframes hs-load{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes hs-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hs-mark{animation:hs-markin .6s cubic-bezier(.2,.8,.2,1) both;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.hs-ring{stroke-dasharray:138;animation:hs-ringdraw 1.2s cubic-bezier(.2,.8,.2,1) .2s both}
+.hs-word{animation:hs-fadeup .6s cubic-bezier(.2,.8,.2,1) .35s both}
+.hs-tag{animation:hs-fadeup .6s cubic-bezier(.2,.8,.2,1) .5s both}
+.hs-foot{animation:hs-fadeup .6s cubic-bezier(.2,.8,.2,1) .8s both}
+.hs-bar{transform-origin:left center;animation:hs-load 2.4s cubic-bezier(.4,0,.2,1) .9s both}
+.hs-dot{animation:hs-pulse 1.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<style>
+html{background:#DADDE1}
+body{margin:0;min-height:100vh;display:flex;align-items:flex-start;justify-content:center}
+</style>
+</head>
+<body>
+<div class="hs-bg-1" style="width: 1920px; height: 1080px; box-sizing: border-box; background: #F7E9EA; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center">
+  <div class="hs-bg" aria-hidden="true"></div>
+
+  <!-- 마크 + 워드마크 -->
+  <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 36px; margin-top: -40px">
+    <span class="hs-mark" style="width: 168px; height: 168px; border-radius: 84px; background: var(--chip); box-shadow: 0 16px 48px rgba(0,0,0,.08); display: inline-flex; align-items: center; justify-content: center">
+      <svg role="img" aria-label="HOOD&amp;SEEK 마크" width="96" height="96" viewBox="0 0 56 56" fill="none">
+        <path d="M10 22c0-8 8-14 18-14s18 6 18 14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+        <circle class="hs-ring" cx="28" cy="34" r="12" stroke="var(--ring)" stroke-width="2.6" stroke-linecap="round" transform="rotate(-90 28 34)"/>
+        <circle cx="28" cy="34" r="3" fill="var(--ink)"/>
+      </svg>
+    </span>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 14px">
+      <h1 class="hs-word hs-num" style="margin: 0; font-size: 64px; font-weight: 600; letter-spacing: 0.14em; line-height: 1; color: var(--ink)">HOOD&amp;SEEK</h1>
+      <p class="hs-tag" style="margin: 0; font-size: 22px; color: var(--ink2); letter-spacing: 0.02em">스마트 주방 안전 시스템</p>
+    </div>
+  </div>
+
+  <!-- 하단: 연결 상태 -->
+  <div class="hs-foot" style="position: absolute; left: 0; right: 0; bottom: 96px; display: flex; flex-direction: column; align-items: center; gap: 20px">
+    <span style="width: 240px; height: 4px; border-radius: 2px; background: var(--track); overflow: hidden; display: block">
+      <span class="hs-bar" style="display: block; width: 100%; height: 100%; border-radius: 2px; background: var(--bar)"></span>
+    </span>
+    <span style="display: inline-flex; align-items: center; gap: 10px; font-size: 18px; color: var(--ink2)">
+      <span class="hs-dot" style="width: 8px; height: 8px; border-radius: 4px; background: var(--dot); display: inline-block"></span>
+      안전 장치와 연결하는 중
+    </span>
+  </div>
+
+  <span style="position: absolute; right: 48px; bottom: 40px; font-size: 16px; color: var(--ink2); font-variant-numeric: tabular-nums">버전 0.4</span>
+</div>
+</body>
+</html>

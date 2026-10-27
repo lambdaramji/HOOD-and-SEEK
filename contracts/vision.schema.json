@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hoodseek.local/contracts/vision.schema.json",
+  "title": "HOOD&SEEK TCP v1 vision",
+  "description": "vision-node → SafetyCore, 추론마다(≈3 Hz). 클래스별 최고 score 1개. 연속 판정용 누적값(consecutive_hits 등)은 두지 않는다 — SafetyCore만 연속 판정한다 (설계서 §2.3·§5.2).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "type", "src", "seq", "t_ms", "p"],
+  "properties": {
+    "v": { "const": 1 },
+    "type": { "const": "vision" },
+    "src": { "const": "vision" },
+    "seq": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+    "t_ms": { "type": "integer", "minimum": 0 },
+    "p": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame_w", "frame_h", "infer_ms", "person", "cat"],
+      "properties": {
+        "frame_w": { "type": "integer", "minimum": 1, "maximum": 4096 },
+        "frame_h": { "type": "integer", "minimum": 1, "maximum": 4096 },
+        "infer_ms": { "type": "integer", "minimum": 0, "maximum": 60000 },
+        "person": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["seen", "score", "bbox"],
+          "properties": {
+            "seen": { "type": "boolean" },
+            "score": { "$ref": "#/$defs/score" },
+            "bbox": { "$ref": "#/$defs/bbox_or_null" }
+          },
+          "$ref": "#/$defs/seen_has_bbox"
+        },
+        "cat": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["seen", "score", "bbox", "roi_overlap"],
+          "properties": {
+            "seen": { "type": "boolean" },
+            "score": { "$ref": "#/$defs/score" },
+            "bbox": { "$ref": "#/$defs/bbox_or_null" },
+            "roi_overlap": { "type": "number", "minimum": 0, "maximum": 1, "description": "bbox∩ROI 면적 / bbox 면적 (설계서 §5.2, P-003)" }
+          },
+          "$ref": "#/$defs/seen_has_bbox"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "score": { "type": "number", "minimum": 0, "maximum": 1 },
+    "bbox_or_null": {
+      "description": "[x_min, y_min, x_max, y_max] 픽셀. 프레임 안(0 ≤ x_min < x_max ≤ frame_w, y 동일)인지는 SafetyCore 파서가 검사한다.",
+      "oneOf": [
+        { "type": "array", "items": { "type": "integer", "minimum": 0, "maximum": 4096 }, "minItems": 4, "maxItems": 4 },
+        { "type": "null" }
+      ]
+    },
+    "seen_has_bbox": {
+      "if": { "properties": { "seen": { "const": true } } },
+      "then": { "properties": { "bbox": { "type": "array" } } },
+      "else": { "properties": { "bbox": { "type": "null" } } }
+    }
+  }
+}

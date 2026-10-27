@@ -1,0 +1,73 @@
+name: "결함 (Bug)"
+description: 기대와 다르게 동작한 것. 재현 절차와 출력 원문이 핵심입니다.
+title: "[bug] "
+labels: ["type: bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **수치와 오류 메시지는 요약하지 말고 출력 그대로** 붙입니다 (CLAUDE.md 문서화 규칙).
+        안전 동작(팬 하한, 인덕션 잠금, fail-safe)이 반대로 간 경우는 우선순위 Must + 라벨 `safety-invariant`를 붙입니다.
+  - type: dropdown
+    id: node
+    attributes:
+      label: 발생 노드
+      options:
+        - SafetyCore (Pi 4)
+        - vision-node (Pi 5)
+        - voice-node (Pi 5)
+        - Flutter 대시보드 (Pi 5)
+        - 팬 ESP32
+        - 쿡탑 ESP32
+        - Pi 4 ↔ Pi 5 TCP 링크
+        - Pi ↔ ESP32 UART
+        - 빌드·배포 (arc / flutter-atlas / Docker)
+        - 모름
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 우선순위
+      options:
+        - Must (데모 Must 시나리오를 막음 / 안전 동작 반전)
+        - Should
+        - Could
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 동작
+      description: 설계서 어느 절이 이렇게 하라고 하는지.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 실제 동작·출력 원문
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: 재현 절차
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: 환경
+      placeholder: "Pi 4 ATLAS Headless, 커밋 abc1234, 2026-10-21 사무실"
+    validations:
+      required: true
+  - type: input
+    id: scenario
+    attributes:
+      label: 영향 받는 데모 시나리오
+      placeholder: "M6, M11"

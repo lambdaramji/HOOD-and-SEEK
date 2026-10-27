@@ -1,0 +1,175 @@
+{
+  "voice": "Q3 E2",
+  "synthesis": "AI-generated Korean female voice",
+  "reference": "self-generated Qwen3-TTS VoiceDesign Q3 E2; no Typecast audio or human reference recording",
+  "reference_sha256": "4f9c296b4228992378bf317d13d5b475b6921b958e226a96833c84199db1a4de",
+  "model_license": "Apache-2.0",
+  "runtime": "mlx-audio 0.6.1 (MIT), Apple MLX, 8bit model conversion",
+  "speaker_design_model": {
+    "repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-8bit",
+    "revision": "f90d617701d9f7f4ca499291e0b57f2b3c2fd2ee"
+  },
+  "continuation_model": {
+    "repo": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit",
+    "revision": "e7dd0585652209fa0d7783659aad4e8a324de11c"
+  },
+  "ending_processing": {
+    "tail_gain_db": -1.2,
+    "note": "OFFLINE_RECOVER preserves the selected E2 sample exactly. Other files use its synthetic voice reference and a gentle ending gain taper only; no per-syllable pitch/time splice."
+  },
+  "files": [
+    {
+      "name": "DANGER",
+      "text": "화재 위험을 미리 감지해 인덕션을 껐어요. 후드를 최대로 돌리고 있어요.",
+      "source": "DANGER.wav",
+      "ending_windows_s": [
+        [
+          2.87,
+          3.28
+        ],
+        [
+          6.01,
+          6.42
+        ]
+      ],
+      "file": "audio/DANGER.wav",
+      "duration_s": 6.469458333333334,
+      "sha256": "2c0332f28ab6bb8cfd8154ca8ba665fa33111ff2681a0ce26c35757aba5e39c9",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    },
+    {
+      "name": "CAT_LOCK",
+      "text": "반려동물이 감지돼 안전 잠금이 설정됐어요.",
+      "source": "CAT_LOCK-seed123.wav",
+      "ending_windows_s": [
+        [
+          3.61,
+          4.02
+        ]
+      ],
+      "file": "audio/CAT_LOCK.wav",
+      "duration_s": 4.88,
+      "sha256": "89032ca343ba8de047affd2257fbe11ea5fc77cbba697ae3adf21ae5d2f1dc94",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    },
+    {
+      "name": "CMD_REJECTED",
+      "text": "지금은 요청을 처리할 수 없어요. 화면의 안내를 확인해 주세요.",
+      "source": "CMD_COMPOSITE.wav",
+      "ending_windows_s": [
+        [
+          2.37,
+          2.78
+        ],
+        [
+          4.68,
+          5.09
+        ]
+      ],
+      "file": "audio/CMD_REJECTED.wav",
+      "duration_s": 5.98,
+      "sha256": "07f9656943075c56db75746b8b559c0e028a838c7f100e0cb9076eafcd62c7ee",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    },
+    {
+      "name": "OFFLINE",
+      "text": "안전 장치의 응답이 없어요. 연결 상태를 확인해 주세요.",
+      "source": "OFFLINE.wav",
+      "ending_windows_s": [
+        [
+          2.3,
+          2.71
+        ],
+        [
+          5.03,
+          5.44
+        ]
+      ],
+      "file": "audio/OFFLINE.wav",
+      "duration_s": 6.32,
+      "sha256": "a31ed3ee7c6e96b1086ae95d00957c00ea6bb95ce7ef97a73979da795369935a",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    },
+    {
+      "name": "OFFLINE_RECOVER",
+      "text": "장치 상태가 복구됐어요.",
+      "source": "selected E2 sample; first sentence only",
+      "ending_windows_s": [
+        [
+          1.49,
+          1.92
+        ]
+      ],
+      "file": "audio/OFFLINE_RECOVER.wav",
+      "duration_s": 2.4,
+      "sha256": "3fc04335eaac6d00e4c9d1be816ff9c1f825a6d79397bb0b3f13ecf2d5bd3420",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    },
+    {
+      "name": "CAUTION",
+      "text": null,
+      "source": "PM-created original chime, unchanged",
+      "file": "audio/CAUTION.wav",
+      "duration_s": 0.96,
+      "sha256": "e19d3deb7ccfd757bc98680dd76502523279fa63b50a2a96881513c620994b30",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    },
+    {
+      "name": "WARNING",
+      "text": null,
+      "source": "Team Python synthesis: 720Hz four pulses, make_chimes.py",
+      "file": "audio/WARNING.wav",
+      "duration_s": 1.31,
+      "sha256": "f54ff680df8d3d84a49b350c70c86c99a18e1d234cf6bd68815100804b2ad6b2",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    },
+    {
+      "name": "APP_START",
+      "text": null,
+      "source": "Original team WARNING chime preserved byte-for-byte",
+      "trigger": "Dashboard initialization once",
+      "file": "audio/APP_START.wav",
+      "duration_s": 1.04,
+      "sha256": "3e9121f2cd0022c9f357d2aba4ebfc5d97b9587c5e59573221bb5cdc91facfa2",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    },
+    {
+      "name": "TOUCH_FEEDBACK",
+      "text": null,
+      "source": "Team Python keyboard-like soft tap V5",
+      "trigger": "Latest UI fan/induction request matched by Core target state and ACK within 3 s",
+      "file": "audio/TOUCH_FEEDBACK.wav",
+      "duration_s": 0.06,
+      "sha256": "ce6b3fa264e41d08b4637677447e3423e077aae54fed43cb630db72d45210a24",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "pcm_bits": 16,
+      "clipped_samples": 0
+    }
+  ],
+  "feedback_revision": "2026-10-26 user-confirmed: APP_START + TOUCH_FEEDBACK V5 + WARNING4; voice5 and CAUTION unchanged"
+}

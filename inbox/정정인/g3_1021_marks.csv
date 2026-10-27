@@ -1,0 +1,40 @@
+pi_unix,item,event,note
+1790609917,setup,logger_start,"nohup journalctl -u hoodseek-safety-core -f -n 0 -o short-unix >> /data/mlx/g3_core_state.log (pid 15199)"
+1790609930,setup,q1_pretest,"(시각은 1790609917~1790609959 사이 근사) Core 직접 실행 --cook-uart none 10 s + cookhold.sh 0 0 5 → g3_pretest_core.log·g3_pretest_cook.txt, 서비스 복귀"
+1790609959,Q5,start,"예열 30분. PM2.5 15.99, baseline null"
+1790611759,Q5,end,"PM2.5 6.96"
+1790612134,setup,box_raised,"박스 바닥판 네 모서리 밑 절연테이프 롤 4개, LED 판 = 테이프 사각형 바로 밑. 센서 valid 확인"
+1790612170,B,core_stop,"systemctl stop hoodseek-safety-core → 쿡탑 fail-safe 빨간 링 점멸 확인(육안)"
+1790612176,B,mlx_stream_start,"/data/mlx/mlx_stream 8080 1 /data/mlx/g3_place.csv — 손난로 45 °C 위치 맞춤, 사진"
+1790612356,B,core_start,"mlx_stream 종료 → systemctl start (손난로 45 °C 놓인 채)"
+1790612373,Q2,45_stable,"안정 = 30 s 창 max 변동 ≤ 0.6 °C (5 s 간격 감시)"
+1790612493,Q2,45_end,
+1790612650,Q2,50_set,"정인 「50」"
+1790612686,Q2,50_stable,
+1790612777,Q2,50_end,
+1790612913,Q2,55_set,"정인 「55」 — 감시 시작 때 이미 warning"
+1790612969,Q2,55_stable,
+1790613060,Q2,55_end,
+1790613186,Q2,60_set,"정인 「60」"
+1790613227,Q2,60_stable,
+1790613409,Q2,60_end,"안정 후 182 s"
+1790613474,Q2,65_set,"정인 「65」"
+1790613611,Q2,65_stable,"danger·locked_danger는 1790613535~1790613550 사이"
+1790613702,Q2,65_end,
+1790613759,Q7,hotpack_removed,"정인 「뺌」 직후 감시 시작(실제 제거는 몇 초 전)"
+1790614002,Q7,end,"4분. metric 14.37 — 바닥판 남은 열"
+1790614993,Q6,start,"65 °C 손난로 집게로 2~3 s 지나가기 3회, 회차 사이 20 s 이상"
+1790615095,Q6,end,
+1790615183,clock,offset,"같은 순간 Mac 시계 1792600769 (2026-10-22 01:39:29 KST) → 실제 시각 ≈ pi_unix + 1985586 s (±1 s, ssh 왕복)"
+1790615288,Q3,1_smoke_arrive,"인센스 새 스틱, 접시 위에 세움, 불붙은 끝 높이 약 10.5 cm(SPS30까지 약 28 cm). 정인 「Q3-1 시작」은 1790615299"
+1790615419,Q3,1_removed,"2분 → 물컵, 선풍기 환기"
+1790615891,Q3,2_smoke_arrive,"새 스틱, 같은 배치. 놓을 때 손·불씨로 metric 17.47 caution"
+1790616027,Q3,2_removed,
+1790616691,Q3,3_smoke_arrive,"새 스틱, 같은 배치. 손 빨리 뺌(metric 최대 15.01)"
+1790616817,Q3,3_removed,
+1790617454,Q1,start,"systemctl stop → safetycore --cook-uart none 직접 실행(g3_q1_core.log, 서비스 로그 아님). 박스 비움, LED 판 바닥판 밑 최종 자리"
+1790617455,Q1,ind0_start,"cookhold.sh 0 0 180 → ACK IND 0 180/180"
+1790617635,Q1,ind3_start,"cookhold.sh 3 0 600 → ACK IND 3 600/600"
+1790618236,Q1,ind3_end,
+1790618244,Q1,service_back,"직접 실행 Core kill → systemctl start, lock unlocked"
+,Q4,skipped,"가습기 작동 안 함 → 미실시"

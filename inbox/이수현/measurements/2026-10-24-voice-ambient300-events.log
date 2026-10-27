@@ -1,0 +1,14 @@
+# quiet run
+event=vad_model_loaded count=1 load_ms=4 vad_threads=1 frame_samples=512 start_ms=224 end_ms=544
+event=model_loaded count=1 load_ms=3057 model=sensevoice vad=streaming_silero mode=observation_only
+event=recognition_config model=sensevoice decoder=greedy language=ko use_itn=1 retry_limit=0 conf_kind=unavailable parser=hi_lg_jamo fan_on_default_level=1 activation_min=0.60 target_min=0.60 action_min=0.70 margin=0.10
+event=capture_audio_origin sample0_monotonic_ns=58010350187681 rate=16000 channels=1 format=S16LE
+event=stopped frames=9843 peak_dbfs=-4.31339 asr_calls=0 overlong_drops=0 utterances=0 retry_calls=0 vad_us=6344380 max_vad_us=3647 candidates=0 transmitted=0
+event=ambient_capture_done bytes=10079680
+# noise run
+event=vad_model_loaded count=1 load_ms=4 vad_threads=1 frame_samples=512 start_ms=224 end_ms=544
+event=model_loaded count=1 load_ms=3000 model=sensevoice vad=streaming_silero mode=observation_only
+event=recognition_config model=sensevoice decoder=greedy language=ko use_itn=1 retry_limit=0 conf_kind=unavailable parser=hi_lg_jamo fan_on_default_level=1 activation_min=0.60 target_min=0.60 action_min=0.70 margin=0.10
+event=capture_audio_origin sample0_monotonic_ns=58350884676497 rate=16000 channels=1 format=S16LE
+event=stopped frames=4843 peak_dbfs=-4.89135 asr_calls=0 overlong_drops=0 utterances=0 retry_calls=0 vad_us=3130588 max_vad_us=1635 candidates=0 transmitted=0
+event=ambient_capture_done bytes=4959680

@@ -1,0 +1,8 @@
+#!/bin/sh
+# 사용: /data/mlx/ev 놓음   — 지금 돌고 있는 smoke_log 회차에 이벤트를 넣는다 (#65, 10/24)
+#   ev fan 3  → 팬 명령을 3단으로 바꿈     ev 환기 → 기준+5 안 30 s면 회차 자동 종료
+f=/data/mlx/runs/current/ev_in
+pidof smoke_log >/dev/null || { echo "smoke_log가 안 돌고 있음 — 이벤트 안 넣음"; exit 1; }
+[ -e "$f" ] || { echo "$f 없음"; exit 1; }
+[ $# -gt 0 ] || { echo "사용: ev <이벤트>"; exit 2; }
+echo "$*" >> "$f" && echo "넣음 $(date +%s): $*"

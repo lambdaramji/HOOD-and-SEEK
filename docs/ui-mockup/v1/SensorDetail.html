@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<title>HOOD&amp;SEEK — 센서 상세 — 60초 그래프</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap">
+<style>
+@font-face{font-family:'LG EI Text';font-weight:300;src:url('fonts/LGEIText-Light.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:400;src:url('fonts/LGEIText-Regular.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:500;src:url('fonts/LGEIText-SemiBold.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:600;src:url('fonts/LGEIText-SemiBold.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:700;src:url('fonts/LGEIText-Bold.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Headline';font-weight:100;src:url('fonts/LGEIHeadline-Thin.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Headline';font-weight:300;src:url('fonts/LGEIHeadline-Light.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Headline';font-weight:400;src:url('fonts/LGEIHeadline-Regular.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Headline';font-weight:600;src:url('fonts/LGEIHeadline-SemiBold.woff2') format('woff2');font-display:swap}
+body{margin:0;font-family:'LG EI Text','Noto Sans KR',system-ui,sans-serif;color:#1A1A1A;-webkit-font-smoothing:antialiased}
+.hs-num{font-family:'LG EI Headline','LG EI Text','Noto Sans KR',system-ui,sans-serif}
+a{color:#1A1A1A;text-decoration:none}a:hover{color:#A50034}
+button{font-family:inherit;cursor:pointer}
+</style>
+<style>
+html{background:#DADDE1}
+body{margin:0;min-height:100vh;display:flex;align-items:flex-start;justify-content:center}
+</style>
+</head>
+<body>
+<div style="width: 1920px; height: 1080px; box-sizing: border-box; padding: 48px; background: #F4F5F7; display: flex; flex-direction: column; gap: 24px; position: relative; overflow: hidden">
+
+  <header style="height: 72px; display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 16px">
+      <button type="button" aria-label="홈으로" style="width: 56px; height: 56px; border: 0; border-radius: 28px; background: #FFFFFF; box-shadow: 0 4px 24px rgba(0,0,0,.06); display: inline-flex; align-items: center; justify-content: center">
+        <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg>
+      </button>
+      <span style="font-size: 28px; font-weight: 600; letter-spacing: -0.01em">센서</span>
+      <span style="font-size: 24px; font-weight: 300; color: #6B7076; margin-left: 8px; font-variant-numeric: tabular-nums">오후 7:45</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 16px">
+      <div style="display: flex; gap: 4px; padding: 6px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 4px 24px rgba(0,0,0,.06)">
+        <button type="button" aria-pressed="true" style="height: 40px; padding: 0 20px; border: 0; border-radius: 20px; background: #ECEEF1; color: #1A1A1A; font-size: 18px; font-weight: 500">60초</button>
+        <button type="button" style="height: 40px; padding: 0 20px; border: 0; border-radius: 20px; background: transparent; color: #6B7076; font-size: 18px; font-weight: 500">10분</button>
+        <button type="button" style="height: 40px; padding: 0 20px; border: 0; border-radius: 20px; background: transparent; color: #6B7076; font-size: 18px; font-weight: 500">1시간</button>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 52px; padding: 0 24px 0 18px; border-radius: 26px; background: #E6F6EE; color: #167A4B; font-size: 22px; font-weight: 500">
+        <span style="width: 12px; height: 12px; border-radius: 6px; background: #2BB673; display: inline-block"></span>
+        정상 · 모든 센서 작동 중
+      </div>
+    </div>
+  </header>
+
+  <div style="flex: 1 1 0; display: flex; flex-direction: column; gap: 24px; min-height: 0">
+
+    <!-- 그래프 2장 -->
+    <div style="height: 420px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+      <section style="box-sizing: border-box; padding: 28px 32px 20px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 4px 24px rgba(0,0,0,.06); display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span style="font-size: 22px; font-weight: 500">조리 온도차 <span style="color: #6B7076; font-weight: 400">· 냄비 − 주변</span></span>
+          <span style="display: flex; align-items: baseline; gap: 6px"><span class="hs-num" style="font-size: 44px; font-weight: 300; line-height: 1; font-variant-numeric: tabular-nums">11.2</span><span style="font-size: 20px; color: #6B7076">°C</span></span>
+        </div>
+        <svg role="img" aria-label="최근 60초 온도차 추이, 주의 기준 아래에서 완만히 상승" viewBox="0 0 840 300" width="836" height="300" style="display: block">
+          <line x1="50" y1="240" x2="830" y2="240" stroke="#E6E8EB" stroke-width="1"/>
+          <line x1="50" y1="185" x2="830" y2="185" stroke="#EEF0F2" stroke-width="1"/>
+          <line x1="50" y1="130" x2="830" y2="130" stroke="#EEF0F2" stroke-width="1"/>
+          <line x1="50" y1="75" x2="830" y2="75" stroke="#EEF0F2" stroke-width="1"/>
+          <line x1="50" y1="20" x2="830" y2="20" stroke="#EEF0F2" stroke-width="1"/>
+          <text x="40" y="245" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">0</text>
+          <text x="40" y="190" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">10</text>
+          <text x="40" y="135" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">20</text>
+          <text x="40" y="80" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">30</text>
+          <text x="40" y="25" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">40</text>
+          <line x1="50" y1="166" x2="830" y2="166" stroke="#F5B800" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <text x="826" y="160" text-anchor="end" font-size="15" fill="#7A5A00" font-family="inherit">주의 16.99</text>
+          <line x1="50" y1="115" x2="830" y2="115" stroke="#F0761F" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <text x="826" y="109" text-anchor="end" font-size="15" fill="#B5410A" font-family="inherit">경고 21.86</text>
+          <line x1="50" y1="73" x2="830" y2="73" stroke="#D7263D" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <text x="826" y="67" text-anchor="end" font-size="15" fill="#B8202F" font-family="inherit">과열 27.07</text>
+          <path d="M50,218 L121,215 L192,212 L263,209 L334,206 L404,204 L475,201 L546,199 L617,196 L688,190 L759,183 L830,178 L830,240 L50,240 Z" fill="#2BB673" fill-opacity="0.08"/>
+          <polyline points="50,218 121,215 192,212 263,209 334,206 404,204 475,201 546,199 617,196 688,190 759,183 830,178" fill="none" stroke="#2BB673" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="830" cy="178" r="7" fill="#2BB673" stroke="#FFFFFF" stroke-width="3"/>
+          <text x="50" y="272" font-size="16" fill="#9AA0A6" font-family="inherit">−60초</text>
+          <text x="440" y="272" text-anchor="middle" font-size="16" fill="#9AA0A6" font-family="inherit">−30초</text>
+          <text x="830" y="272" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">지금</text>
+        </svg>
+      </section>
+
+      <section style="box-sizing: border-box; padding: 28px 32px 20px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 4px 24px rgba(0,0,0,.06); display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span style="font-size: 22px; font-weight: 500">공기 질 PM2.5 <span style="color: #6B7076; font-weight: 400">· 기준선 + 상승폭</span></span>
+          <span style="display: flex; align-items: baseline; gap: 6px"><span class="hs-num" style="font-size: 44px; font-weight: 300; line-height: 1; font-variant-numeric: tabular-nums">18</span><span style="font-size: 20px; color: #6B7076">µg/m³</span></span>
+        </div>
+        <svg role="img" aria-label="최근 60초 미세먼지 추이, 주의 기준 아래에서 조금 올랐다가 내려감" viewBox="0 0 840 300" width="836" height="300" style="display: block">
+          <line x1="50" y1="240" x2="830" y2="240" stroke="#E6E8EB" stroke-width="1"/>
+          <line x1="50" y1="185" x2="830" y2="185" stroke="#EEF0F2" stroke-width="1"/>
+          <line x1="50" y1="130" x2="830" y2="130" stroke="#EEF0F2" stroke-width="1"/>
+          <line x1="50" y1="75" x2="830" y2="75" stroke="#EEF0F2" stroke-width="1"/>
+          <line x1="50" y1="20" x2="830" y2="20" stroke="#EEF0F2" stroke-width="1"/>
+          <text x="40" y="245" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">0</text>
+          <text x="40" y="190" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">25</text>
+          <text x="40" y="135" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">50</text>
+          <text x="40" y="80" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">75</text>
+          <text x="40" y="25" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">100</text>
+          <line x1="50" y1="220" x2="830" y2="220" stroke="#9AA0A6" stroke-width="1.5" stroke-dasharray="3 5"/>
+          <text x="54" y="214" font-size="15" fill="#6B7076" font-family="inherit">기준선 9</text>
+          <line x1="50" y1="163" x2="830" y2="163" stroke="#F5B800" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <text x="826" y="157" text-anchor="end" font-size="15" fill="#7A5A00" font-family="inherit">주의 35</text>
+          <line x1="50" y1="75" x2="830" y2="75" stroke="#D7263D" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <text x="826" y="69" text-anchor="end" font-size="15" fill="#B8202F" font-family="inherit">연기 75</text>
+          <path d="M50,218 L121,216 L192,214 L263,209 L334,201 L404,190 L475,180 L546,177 L617,182 L688,190 L759,196 L830,200 L830,240 L50,240 Z" fill="#2BB673" fill-opacity="0.08"/>
+          <polyline points="50,218 121,216 192,214 263,209 334,201 404,190 475,180 546,177 617,182 688,190 759,196 830,200" fill="none" stroke="#2BB673" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="830" cy="200" r="7" fill="#2BB673" stroke="#FFFFFF" stroke-width="3"/>
+          <text x="50" y="272" font-size="16" fill="#9AA0A6" font-family="inherit">−60초</text>
+          <text x="440" y="272" text-anchor="middle" font-size="16" fill="#9AA0A6" font-family="inherit">−30초</text>
+          <text x="830" y="272" text-anchor="end" font-size="16" fill="#9AA0A6" font-family="inherit">지금</text>
+        </svg>
+      </section>
+    </div>
+
+    <!-- 로그 + 센서 상태 -->
+    <div style="flex: 1 1 0; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; min-height: 0">
+      <section style="box-sizing: border-box; padding: 28px 32px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 4px 24px rgba(0,0,0,.06); display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+        <span style="font-size: 22px; font-weight: 500">최근 일어난 일</span>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+          <li style="display: flex; align-items: center; gap: 18px; height: 56px; border-bottom: 1px solid #EEF0F2">
+            <span style="width: 92px; font-size: 18px; color: #6B7076; font-variant-numeric: tabular-nums">19:45:36</span>
+            <span style="width: 10px; height: 10px; border-radius: 5px; background: #2BB673"></span>
+            <span style="font-size: 20px; flex: 1 1 0">온도 정상으로 돌아옴</span>
+            <span style="font-size: 18px; color: #6B7076">후드 2단</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 18px; height: 56px; border-bottom: 1px solid #EEF0F2">
+            <span style="width: 92px; font-size: 18px; color: #6B7076; font-variant-numeric: tabular-nums">19:44:51</span>
+            <span style="width: 10px; height: 10px; border-radius: 5px; background: #F5B800"></span>
+            <span style="font-size: 20px; flex: 1 1 0">온도 주의 — 16.8 °C</span>
+            <span style="font-size: 18px; color: #6B7076">후드 1단 유지</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 18px; height: 56px; border-bottom: 1px solid #EEF0F2">
+            <span style="width: 92px; font-size: 18px; color: #6B7076; font-variant-numeric: tabular-nums">19:43:24</span>
+            <span style="width: 10px; height: 10px; border-radius: 5px; background: #1A1A1A"></span>
+            <span style="font-size: 20px; flex: 1 1 0">음성 “후드 2단으로 올려 줘”</span>
+            <span style="font-size: 18px; color: #6B7076">실행됨</span>
+          </li>
+          <li style="display: flex; align-items: center; gap: 18px; height: 56px">
+            <span style="width: 92px; font-size: 18px; color: #6B7076; font-variant-numeric: tabular-nums">19:42:07</span>
+            <span style="width: 10px; height: 10px; border-radius: 5px; background: #2BB673"></span>
+            <span style="font-size: 20px; flex: 1 1 0">조리 시작 — 사람 감지, 인덕션 2단</span>
+            <span style="font-size: 18px; color: #6B7076">모니터링 시작</span>
+          </li>
+        </ul>
+      </section>
+
+      <section style="box-sizing: border-box; padding: 28px 32px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 4px 24px rgba(0,0,0,.06); display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 22px; font-weight: 500">센서 상태</span>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+          <div style="display: flex; align-items: center; gap: 14px; height: 88px; padding: 0 18px; border-radius: 18px; background: #F4F5F7">
+            <span style="width: 44px; height: 44px; border-radius: 22px; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14.5V5a2 2 0 1 1 4 0v9.5a3.5 3.5 0 1 1-4 0z"/></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 18px; font-weight: 500">열화상</span><span style="font-size: 16px; color: #167A4B">작동 중</span></span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px; height: 88px; padding: 0 18px; border-radius: 18px; background: #F4F5F7">
+            <span style="width: 44px; height: 44px; border-radius: 22px; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h11a2.5 2.5 0 1 0-2.5-2.5"/><path d="M3 12h15a2.5 2.5 0 1 1-2.5 2.5"/><path d="M3 16h8a2 2 0 1 1-2 2"/></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 18px; font-weight: 500">미세먼지</span><span style="font-size: 16px; color: #167A4B">작동 중</span></span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px; height: 88px; padding: 0 18px; border-radius: 18px; background: #F4F5F7">
+            <span style="width: 44px; height: 44px; border-radius: 22px; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10l5-3v10l-5-3"/><rect x="3" y="6" width="13" height="12" rx="2"/></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 18px; font-weight: 500">카메라</span><span style="font-size: 16px; color: #167A4B">작동 중 · 사람·반려동물</span></span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px; height: 88px; padding: 0 18px; border-radius: 18px; background: #F4F5F7">
+            <span style="width: 44px; height: 44px; border-radius: 22px; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E4FD6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 18px; font-weight: 500">음성</span><span style="font-size: 16px; color: #167A4B">마지막 명령 수락</span></span>
+          </div>
+        </div>
+        <span style="font-size: 16px; color: #6B7076; margin-top: auto">안전 장치 연결됨 · 가동 2시간 14분</span>
+      </section>
+    </div>
+  </div>
+
+  <nav aria-label="주요 화면" style="height: 88px; display: flex; justify-content: center; align-items: center">
+    <div style="display: flex; gap: 4px; padding: 8px; border-radius: 44px; background: #FFFFFF; box-shadow: 0 4px 24px rgba(0,0,0,.06)">
+      <button type="button" style="width: 176px; height: 72px; border: 0; border-radius: 36px; background: transparent; color: #6B7076; font-size: 22px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 10px">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B7076" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg>홈
+      </button>
+      <button type="button" aria-current="page" style="width: 176px; height: 72px; border: 0; border-radius: 36px; background: #ECEEF1; color: #1A1A1A; font-size: 22px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 10px">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>센서
+      </button>
+      <button type="button" style="width: 176px; height: 72px; border: 0; border-radius: 36px; background: transparent; color: #6B7076; font-size: 22px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 10px">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B7076" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>기기
+      </button>
+      <button type="button" style="width: 176px; height: 72px; border: 0; border-radius: 36px; background: transparent; color: #6B7076; font-size: 22px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center; gap: 10px">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B7076" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>기록
+      </button>
+    </div>
+  </nav>
+</div>
+</body>
+</html>

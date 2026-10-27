@@ -1,0 +1,8 @@
+{
+  "id": "com.atlas.HoodSeekSafetyCore1",
+  "name": "safetycore",
+  "description": "HOOD&SEEK SafetyCore - Pi 4 safety plane (sensors, policy, ESP32 UART, TCP 7420)",
+  "type": "native",
+  "entry": "safetycore",
+  "version": "0.1.0"
+}

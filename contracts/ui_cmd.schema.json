@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hoodseek.local/contracts/ui_cmd.schema.json",
+  "title": "HOOD&SEEK TCP ui_cmd (v 2)",
+  "description": "Flutter → SafetyCore, 사용자 터치. cmd allowlist 4종. 음성과 같은 허가 규칙(설계서 §3.5)을 통과해야 집행된다. ACK_ALERT는 위험 잠금 해제의 필요조건 중 하나일 뿐 잠금을 직접 풀지 못한다 (설계서 §2.3·§3.4). v 2(D-058): 사용자 잠금 USER_LOCK(1 잠금 · 0 해제)을 더함 — 사용자 잠금만 켜고 끄며 위험·반려동물 잠금은 풀지 못한다. 옛 세 명령은 v 1·v 2 둘 다, USER_LOCK은 v 2에서만.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "type", "src", "seq", "t_ms", "p"],
+  "properties": {
+    "v": { "enum": [1, 2] },
+    "type": { "const": "ui_cmd" },
+    "src": { "const": "ui" },
+    "seq": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+    "t_ms": { "type": "integer", "minimum": 0 },
+    "p": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cmd", "value"],
+      "properties": {
+        "cmd": { "enum": ["FAN_SET", "IND_SET", "ACK_ALERT", "USER_LOCK"] },
+        "value": { "type": "integer", "minimum": 0, "maximum": 3 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "cmd": { "const": "ACK_ALERT" } } },
+          "then": { "properties": { "value": { "const": 0 } } }
+        },
+        {
+          "if": { "properties": { "cmd": { "const": "USER_LOCK" } } },
+          "then": { "properties": { "value": { "maximum": 1 } } }
+        }
+      ]
+    }
+  },
+  "if": { "properties": { "p": { "properties": { "cmd": { "const": "USER_LOCK" } } } } },
+  "then": { "properties": { "v": { "const": 2 } } }
+}

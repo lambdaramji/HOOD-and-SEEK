@@ -1,0 +1,30 @@
+# HOOD&SEEK voice-node (Pi 5) — 재부팅 후 수동 start (#46, 설계서 §8.2)
+# 설치 전에 voice-node.env의 SenseVoice/Silero 모델·런타임·입력·Core 주소를 채운다.
+# 기본은 관측 전용. 발행은 수신 대상/정책 확인 후 VOICE_PUBLISH_ARGS=--publish로 명시한다.
+#   cp hoodseek-voice-observer /data/hoodseek/bin/
+#   최초 설치만: cp -i deploy/systemd/voice-node.env.example /data/hoodseek/voice-node.env
+#   모델/런타임·실제 env·관측 실행을 확인한 뒤 유닛을 교체한다(deploy/README.md).
+#   cp -i deploy/systemd/hoodseek-voice-node.service /data/share/usr/lib/systemd/system/
+#   systemctl daemon-reload && systemctl start hoodseek-voice-node
+#   journalctl -u hoodseek-voice-node -f
+#   systemctl stop hoodseek-voice-node
+# /data가 부팅 유닛 검색 뒤 마운트되므로 enable로 자동 기동을 보장하지 않는다.
+[Unit]
+Description=HOOD&SEEK voice-node (PulseAudio + SenseVoice -> SafetyCore TCP voice)
+StartLimitIntervalSec=0
+
+[Service]
+# 기존 Pi5 root SSH에서 PulseAudio 접근 확인. 전용 계정·rootfs 권한은 변경하지 않는다.
+Type=simple
+WorkingDirectory=/data/hoodseek
+EnvironmentFile=/data/hoodseek/voice-node.env
+Environment=LLVM_PROFILE_FILE=/dev/null
+# $VOICE_PUBLISH_ARGS는 빈 값이면 인수 0개, --publish면 인수 1개로 확장된다.
+ExecStart=/data/hoodseek/bin/hoodseek-voice-observer --sensevoice-dir ${SENSEVOICE_MODEL_DIR} --pulse-source ${MIC} --vad-model ${VAD_MODEL} --core-host ${CORE_HOST} --core-port ${CORE_PORT} $VOICE_PUBLISH_ARGS
+Restart=always
+RestartSec=1
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

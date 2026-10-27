@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HOOD&amp;SEEK 사용자 디스플레이 UI — 화면 목록</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap">
+<style>
+@font-face{font-family:'LG EI Text';font-weight:300;src:url('fonts/LGEIText-Light.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:400;src:url('fonts/LGEIText-Regular.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:500;src:url('fonts/LGEIText-SemiBold.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:600;src:url('fonts/LGEIText-SemiBold.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'LG EI Text';font-weight:700;src:url('fonts/LGEIText-Bold.woff2') format('woff2');font-display:swap}
+</style>
+<style>
+:root{--bg:#F4F5F7;--card:#FFF;--t1:#1A1A1A;--t2:#6B7076;--line:#E6E8EB}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--t1);font-family:'LG EI Text','Noto Sans KR',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+header{padding:40px 48px 8px}
+h1{margin:0 0 6px;font-size:28px;font-weight:600;letter-spacing:-.01em}
+header p{margin:0;color:var(--t2);font-size:15px;line-height:1.6}
+.row{padding:24px 48px}
+h2{margin:0 0 14px;font-size:18px;font-weight:600}
+.grid{display:flex;flex-wrap:wrap;gap:20px}
+.card{display:block;text-decoration:none;color:inherit;background:var(--card);border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.06);overflow:hidden;transition:transform .15s}
+.card:hover{transform:translateY(-2px)}
+.thumb{position:relative;overflow:hidden;background:#DADDE1}
+.thumb iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;pointer-events:none}
+.meta{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-top:1px solid var(--line)}
+.file{font-size:12px;color:var(--t2);font-family:ui-monospace,Menlo,monospace}
+.title{font-size:14px;font-weight:500}
+footer{padding:24px 48px 48px;color:var(--t2);font-size:13px;line-height:1.7}
+</style>
+</head>
+<body>
+<header>
+  <h1>HOOD&amp;SEEK 사용자 디스플레이 UI</h1>
+  <p>15.8" 터치 · 1920×1080 · LG ThinQ 앱(후드·인덕션 연결) · 시나리오 M1~M13 전체. 카드를 누르면 실제 크기 화면이 새 탭에서 열립니다(애니메이션 포함).</p>
+</header>
+
+    <section class="row">
+      <h2>A. 정상 흐름</h2>
+      <div class="grid">
+      <a class="card" href="Splash.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="Splash.html" title="스플래시 — 시작 화면" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Splash.html</span><span class="title">A1 · 스플래시 (부팅)</span></div>
+      </a>
+      <a class="card" href="Idle.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="Idle.html" title="대기 — 조리 전" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Idle.html</span><span class="title">A2 · 대기 (M1 전)</span></div>
+      </a>
+      <a class="card" href="Main.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="Main.html" title="홈 — 정상 조리" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Main.html</span><span class="title">A3 · M1 정상 조리</span></div>
+      </a>
+      <a class="card" href="Caution.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="Caution.html" title="중불 조리 중" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Caution.html</span><span class="title">A4 · M2 중불 (D-054)</span></div>
+      </a>
+      <a class="card" href="Warning.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="Warning.html" title="강불 조리 중 (재실)" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Warning.html</span><span class="title">A5 · M3 강불 (재실, D-054)</span></div>
+      </a>
+      </div>
+    </section>
+    <section class="row">
+      <h2>B. 위험·잠금·복구</h2>
+      <div class="grid">
+      <a class="card" href="Absent.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="Absent.html" title="경고 — 자리 비움" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Absent.html</span><span class="title">B1 · M8 경고 + 자리 비움</span></div>
+      </a>
+      <a class="card" href="AlertSmoke.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="AlertSmoke.html" title="위험 — 화재 위험 미리 차단" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">AlertSmoke.html</span><span class="title">B2 · M6 65 °C급 + 과한 연기 → 차단 (D-054)</span></div>
+      </a>
+      <a class="card" href="AlertPet.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="AlertPet.html" title="경고 — 반려동물 감지 잠금" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">AlertPet.html</span><span class="title">B3 · M9 고양이 잠금</span></div>
+      </a>
+      <a class="card" href="AckWait.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="AckWait.html" title="위험 해소 — 확인 대기" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">AckWait.html</span><span class="title">B4 · M10 위험 확인 대기 (해제 조건 1/3)</span></div>
+      </a>
+      <a class="card" href="UnlockWait.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="UnlockWait.html" title="확인됨 — 해제 대기" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">UnlockWait.html</span><span class="title">B5 · M10 확인됨 · 자리 비움으로 해제 대기</span></div>
+      </a>
+      <a class="card" href="Recovered.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="Recovered.html" title="복구 완료 — 잠금 풀림" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Recovered.html</span><span class="title">B6 · M10 복구 완료</span></div>
+      </a>
+      </div>
+    </section>
+    <section class="row">
+      <h2>C. 음성</h2>
+      <div class="grid">
+      <a class="card" href="VoiceOverlay.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="VoiceOverlay.html" title="음성 — 요청 전달 중 (로컬 경로 합의 뒤)" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">VoiceOverlay.html</span><span class="title">C1 · M4 요청 전달 중 (T5/T6 로컬 경로 합의 뒤)</span></div>
+      </a>
+      <a class="card" href="VoiceDone.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="VoiceDone.html" title="음성 — 요청 받음" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">VoiceDone.html</span><span class="title">C2 · M4 요청 받음</span></div>
+      </a>
+      <a class="card" href="VoiceRejected.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="VoiceRejected.html" title="음성 — 명령 거부 (잠금 중)" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">VoiceRejected.html</span><span class="title">C3 · M5 명령 거부 (잠금 중)</span></div>
+      </a>
+      </div>
+    </section>
+    <section class="row">
+      <h2>D. 고장·연결</h2>
+      <div class="grid">
+      <a class="card" href="SensorFault.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="SensorFault.html" title="점검 필요 — 온도 센서 고장" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">SensorFault.html</span><span class="title">D1 · F4 센서 고장</span></div>
+      </a>
+      <a class="card" href="Disconnected.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="Disconnected.html" title="연결 끊김 — 안전 모드" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Disconnected.html</span><span class="title">D2 · M11·M13 연결 끊김</span></div>
+      </a>
+      </div>
+    </section>
+    <section class="row">
+      <h2>E. 하위 화면</h2>
+      <div class="grid">
+      <a class="card" href="SensorDetail.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="SensorDetail.html" title="센서 상세 — 60초 그래프" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">SensorDetail.html</span><span class="title">E1 · 센서 상세 (60초 그래프)</span></div>
+      </a>
+      <a class="card" href="DeviceSheet.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:384px;height:216px">
+          <iframe src="DeviceSheet.html" title="기기 제어 시트" loading="lazy" style="width:1920px;height:1080px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">DeviceSheet.html</span><span class="title">E2 · 기기 제어 시트</span></div>
+      </a>
+      </div>
+    </section>
+    <section class="row">
+      <h2>스타일</h2>
+      <div class="grid">
+      <a class="card" href="Tokens.html" target="_blank" rel="noopener">
+        <div class="thumb" style="width:96px;height:240px">
+          <iframe src="Tokens.html" title="스타일 토큰" loading="lazy" style="width:480px;height:1200px;transform:scale(0.2)" tabindex="-1"></iframe>
+        </div>
+        <div class="meta"><span class="file">Tokens.html</span><span class="title">스타일 토큰</span></div>
+      </a>
+      </div>
+    </section>
+<footer>
+  각 화면은 외부 의존성 없이 단독으로 열립니다(폰트만 Google Fonts · Noto Sans KR). 글꼴은 fonts/ 폴더의 LG EI Text(본문)·LG EI Headline(수치) woff2를 사용하며, 없으면 Noto Sans KR로 대체됩니다.<br>
+  색 토큰·타이포·간격·애니메이션 명세는 <code>Tokens.html</code>과 각 파일 상단 <code>&lt;style&gt;</code>의 <code>hs-*</code> 규칙을 참고하세요.
+</footer>
+</body>
+</html>

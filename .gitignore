@@ -1,0 +1,7 @@
+**/.dart_tool/
+**/.packages
+**/build/
+# 로컬 Flutter 버전으로 만든 lock은 ATLAS 엔진(3.27.4)과 Dart 하한이 달라 추적하지 않는다 (#130 정인 리뷰)
+flutter_app/pubspec.lock
+**/.pio/
+/REF/

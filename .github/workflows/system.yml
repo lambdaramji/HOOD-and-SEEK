@@ -1,0 +1,176 @@
+# System CI — 전환 전후 같은 파일로 쓰는 단일 워크플로.
+#
+# 구조: 매 PR·main push마다 `discover`가 ① 저장소에 지금 있는 것 ② 이 PR이 건드린 경로 를 보고
+# 관련 job만 돌립니다. 관련 없는 job은 if로 skip 되는데, GitHub는 **if로 skip된 job을 성공으로** 칩니다.
+# 그래서 `system_ci_result`를 Ruleset의 필수 status check로 걸 수 있습니다.
+# (경로 트리거 `paths:`로 워크플로 자체를 건너뛰면 필수 check가 "Expected" 상태로 영원히 남아 병합이 막힙니다.
+#  GitHub Docs "Handling skipped but required checks" — 그래서 paths: 를 쓰지 않습니다.)
+#
+# voice_node/의 모델 없는 파서·VAD·TCP 검사는 호스트에서 실행합니다.
+# ASR/PulseAudio·vision_node의 기기 의존 빌드는 atlas-dev에서 검증하고 PR에 기록합니다.
+name: System CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      dart: ${{ steps.d.outputs.dart }}
+      esp32: ${{ steps.d.outputs.esp32 }}
+      safety_core_tests: ${{ steps.d.outputs.safety_core_tests }}
+      pi4_sensor_node: ${{ steps.d.outputs.pi4_sensor_node }}
+      profiles: ${{ steps.d.outputs.profiles }}
+      contracts: ${{ steps.d.outputs.contracts }}
+      voice_node: ${{ steps.d.outputs.voice_node }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Changed files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            gh api "repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/files" --paginate --jq '.[].filename' > changed.txt
+          else
+            echo ALL > changed.txt   # main push는 전부 실행
+          fi
+          # 워크플로 파일 자체를 고쳤으면 전부 실행
+          grep -q '^\.github/workflows/system\.yml$' changed.txt && echo ALL >> changed.txt
+          echo "--- changed ---"; cat changed.txt
+      - id: d
+        run: |
+          hit() { grep -qx ALL changed.txt || grep -qE "$1" changed.txt; }   # 경로 정규식이 변경 목록에 있는가
+          json_list() { printf '%s\n' "$@" | sed '/^$/d' | jq -R . | jq -cs .; }
+          # ① 존재 ② 관련 변경 둘 다 만족하는 것만
+          dart=(); for p in packages/hood_seek_protocol pi5_gateway; do [[ -f "$p/pubspec.yaml" ]] && hit "^($p/|contracts/|packages/hood_seek_protocol/)" && dart+=("$p"); done
+          esp32=(); for p in firmware/*/platformio.ini; do d=$(basename "$(dirname "$p")"); [[ -f "$p" ]] && hit "^firmware/$d/" && esp32+=("$d"); done
+          echo "dart=$(json_list "${dart[@]}")" >> "$GITHUB_OUTPUT"
+          echo "esp32=$(json_list "${esp32[@]}")" >> "$GITHUB_OUTPUT"
+          echo "safety_core_tests=$([[ -f safety_core/tests/CMakeLists.txt ]] && hit '^(safety_core/|profiles/)' && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "pi4_sensor_node=$([[ -f pi4_sensor_node/CMakeLists.txt ]] && hit '^(pi4_sensor_node/|contracts/)' && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "profiles=$(ls profiles/*.json >/dev/null 2>&1 && hit '^profiles/' && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "contracts=$(ls contracts/*.schema.json >/dev/null 2>&1 && hit '^contracts/' && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          echo "voice_node=$([[ -f voice_node/CMakeLists.txt ]] && hit '^(voice_node/|contracts/)' && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+  # ── S10: 판정 상태기계는 하드웨어 없이 PC에서 (safety_core/tests/CMakeLists.txt 는 policy.cpp + policy_test.cpp 만으로 독립 빌드) ──
+  safety_core_policy:
+    needs: discover
+    if: needs.discover.outputs.safety_core_tests == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S safety_core/tests -B safety_core/tests/build -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build safety_core/tests/build
+      - run: ctest --test-dir safety_core/tests/build --output-on-failure
+
+  # ── 계약: contracts/validate.py 하나를 로컬과 똑같이 실행. 스키마 문법 + contracts/examples/<name>*.json 통과(한 줄 4096 byte 이내)
+  #    + contracts/examples/invalid/<name>.<case>.json 실패. ──
+  contracts:
+    needs: discover
+    if: needs.discover.outputs.contracts == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install jsonschema==4.23.0
+      - name: Validate schemas, examples (pass) and examples/invalid (must fail)
+        run: python contracts/validate.py
+
+  voice_node:
+    needs: discover
+    if: needs.discover.outputs.voice_node == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S voice_node -B voice_node/build -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build voice_node/build
+      - run: ctest --test-dir voice_node/build --output-on-failure
+
+  profiles:
+    needs: discover
+    if: needs.discover.outputs.profiles == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: for f in profiles/*.json; do python -m json.tool "$f" >/dev/null && echo "ok $f"; done
+
+  # ── 펌웨어: firmware/*/platformio.ini 가 있고 이 PR이 건드린 보드만 (esp32_cooktop 추가 시 자동 포함) ──
+  esp32:
+    needs: discover
+    if: needs.discover.outputs.esp32 != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJson(needs.discover.outputs.esp32) }}
+    defaults:
+      run:
+        working-directory: firmware/${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install platformio==6.1.19
+      - run: pio run
+
+  # ── MQTT 세대 (디렉터리가 아카이브되면 자동 skip) ──
+  dart:
+    needs: discover
+    if: needs.discover.outputs.dart != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJson(needs.discover.outputs.dart) }}
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: Check Dart formatting
+        run: |
+          paths=(lib test)
+          if [[ -d bin ]]; then paths+=(bin); fi
+          dart format "${paths[@]}"
+          git diff --exit-code -- "${paths[@]}"
+      - run: dart analyze --fatal-infos
+      - run: dart test
+
+  pi4_sensor_node:
+    needs: discover
+    if: needs.discover.outputs.pi4_sensor_node == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S pi4_sensor_node -B pi4_sensor_node/build
+      - run: cmake --build pi4_sensor_node/build
+      - run: ctest --test-dir pi4_sensor_node/build --output-on-failure
+
+  # ── Ruleset 필수 status check는 이 job 하나. 매트릭스 job(esp32, dart)은 이름이 "esp32 (보드명)"으로 바뀌어 직접 걸 수 없고,
+  #    discover가 실패하면 나머지가 "의존 실패로 skip"돼 병합을 안 막을 수 있어서 always()로 전부 모아 판정합니다. ──
+  system_ci_result:
+    needs: [discover, safety_core_policy, contracts, profiles, esp32, dart, pi4_sensor_node, voice_node]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if any job failed or was cancelled
+        env:
+          RESULTS: ${{ toJson(needs) }}
+        run: |
+          echo "$RESULTS" | jq -r 'to_entries[] | "\(.key): \(.value.result)"'
+          echo "$RESULTS" | jq -e '[.[] | .result] | all(. == "success" or . == "skipped")' >/dev/null

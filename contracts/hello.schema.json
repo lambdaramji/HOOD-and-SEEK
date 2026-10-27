@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hoodseek.local/contracts/hello.schema.json",
+  "title": "HOOD&SEEK TCP v1 hello",
+  "description": "클라이언트 → SafetyCore, 접속 직후 1회. 5 s 안에 없으면 서버가 연결을 끊고, 받으면 state 1회로 즉시 응답한다 (설계서 §2.1·§2.3).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "type", "src", "seq", "t_ms", "p"],
+  "properties": {
+    "v": { "const": 1 },
+    "type": { "const": "hello" },
+    "src": { "enum": ["vision", "voice", "ui"] },
+    "seq": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+    "t_ms": { "type": "integer", "minimum": 0 },
+    "p": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["node", "ver"],
+      "properties": {
+        "node": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,31}$" },
+        "ver": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+      }
+    }
+  }
+}

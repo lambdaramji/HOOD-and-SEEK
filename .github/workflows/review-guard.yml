@@ -1,0 +1,73 @@
+# 요청한 리뷰어 전원이 승인해야 병합 — Ruleset 필수 status check `all_reviewers_approved`.
+#
+# Ruleset의 「승인 N명」은 누가 승인했는지 보지 않고, 요청했는데 아직 답하지 않은 리뷰어가 남아도 병합됩니다
+# (2026-10-22 PM 결정 B, CONTRIBUTING.md §1). 그래서 리뷰어 상태를 직접 보고 아래 둘 중 하나라도 있으면 실패합니다.
+#   ① 아직 리뷰를 요청받은 상태인 사람·팀 (재요청 포함)
+#   ② 리뷰를 남긴 사람 중 마지막 「결정」(APPROVED·CHANGES_REQUESTED·DISMISSED)이 승인이 아닌 사람.
+#      코멘트만 남겼으면 결정이 없으므로 승인 전까지 막습니다. 결정 뒤 단 스레드 답글(COMMENTED)은 결정을 바꾸지 않습니다.
+# 작성자 본인과 봇은 세지 않습니다. 새 push로 승인이 무효화되면(DISMISSED) 다시 승인받아야 통과합니다.
+# 리뷰 제출·무효화, 리뷰어 지정·해제, push마다 다시 돕니다. 같은 PR의 이전 실행은 취소합니다.
+#
+# 결과는 job 성패가 아니라 head 커밋의 **commit status** `all_reviewers_approved`로 남깁니다. 같은 커밋에서 이벤트마다
+# 새 실행(check run)이 생기는데, Ruleset은 같은 이름의 check run이 하나라도 실패면 막습니다 — PR을 열 때 실패한 실행이
+# 승인 뒤에도 남아 병합이 막힘 [실측 2026-10-22 #104]. commit status는 같은 context면 최신 것으로 바뀝니다.
+# 그래서 job 이름은 필수 context와 다르게(`review_guard`) 두고, job은 상태를 쓴 뒤 항상 성공으로 끝납니다.
+name: Review guard
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review, review_requested, review_request_removed]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+permissions:
+  contents: read
+  pull-requests: read
+  statuses: write
+
+concurrency:
+  group: review-guard-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review_guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 요청 리뷰어 전원 승인 확인
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          pr=$(gh api "repos/$REPO/pulls/$PR")
+          author=$(jq -r '.user.login' <<<"$pr")
+          pending=$(jq -r '[.requested_reviewers[].login, (.requested_teams[] | "team:" + .slug)] | join(" ")' <<<"$pr")
+          reviews=$(gh api --paginate "repos/$REPO/pulls/$PR/reviews" | jq -s 'add // []')
+          # 리뷰어마다 마지막 결정. 코멘트만 있으면 COMMENTED
+          states=$(jq -c --arg author "$author" '
+            [ .[] | select(.user.login != $author and .user.type != "Bot") ]
+            | sort_by(.submitted_at) | group_by(.user.login)
+            | map({who: .[0].user.login,
+                   last: (([ .[] | select(.state == "APPROVED" or .state == "CHANGES_REQUESTED" or .state == "DISMISSED") ] | last | .state) // "COMMENTED")})' <<<"$reviews")
+          approved=$(jq -r 'map(select(.last == "APPROVED") | .who) | join(" ")' <<<"$states")
+          not_approved=$(jq -r 'map(select(.last != "APPROVED") | "\(.who)(\(.last))") | join(" ")' <<<"$states")
+          {
+            echo "### 리뷰어 상태 (작성자 @$author)"
+            echo "- 승인: ${approved:-없음}"
+            echo "- 아직 요청 중: ${pending:-없음}"
+            echo "- 승인 아님: ${not_approved:-없음}"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          if [[ -n "$pending" || -n "$not_approved" ]]; then
+            state=failure
+            desc="요청 중: ${pending:-없음} / 승인 아님: ${not_approved:-없음}"
+          else
+            state=success
+            desc="요청 리뷰어 전원 승인: ${approved:-없음}"
+          fi
+          # description은 140자까지라 자른다. 자세한 목록은 target_url(이 실행의 요약)에 있다
+          gh api "repos/$REPO/statuses/$SHA" -f state="$state" -f context=all_reviewers_approved \
+            -f description="${desc:0:139}" -f target_url="$RUN_URL" >/dev/null
+          echo "commit status all_reviewers_approved = $state (${SHA:0:7})" | tee -a "$GITHUB_STEP_SUMMARY"

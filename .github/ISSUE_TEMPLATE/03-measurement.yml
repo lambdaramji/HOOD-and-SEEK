@@ -1,0 +1,41 @@
+name: "실측·시험 기록 (Measurement)"
+description: 실기기에서 확인한 사실. 결과는 docs/ 또는 inbox/ 문서로 남기고 이 이슈는 그 문서의 트래커입니다.
+title: "[실측] "
+labels: ["type: measurement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        [실측] / [문서] / [추정] 표기는 CLAUDE.md 문서화 규칙을 따릅니다. **확인 방법이 없는 추정은 적지 않습니다.**
+        10/23 임계값 재실측, 10/19 uart overlay·ipk 재부팅 실측처럼 **설계서의 [확인 필요] 항목**을 닫는 데 씁니다.
+  - type: input
+    id: closes
+    attributes:
+      label: 닫으려는 미결 항목
+      description: 설계서 Q-번호, P-0xx, R-xx 중 해당
+      placeholder: "Q-S10-1 (ipk 재부팅 자동 기동)"
+    validations:
+      required: true
+  - type: textarea
+    id: plan
+    attributes:
+      label: 무엇을 어떻게 재는가
+      description: 대상 장치, 자극(손난로·인센스·가습기 등), 측정 명령, 반복 횟수
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 결과 (완료 후 채움)
+      description: 출력 원문. 표가 필요하면 docs/ 문서로 쓰고 여기엔 링크와 결론만.
+      render: text
+  - type: textarea
+    id: followup
+    attributes:
+      label: 이 결과로 고쳐야 하는 것
+      description: 이전 문서를 뒤집으면 "무엇을 어떻게 고쳐야 하는지" 표로. 설계서·profiles/default.json·계약 중 어디를 바꾸는지.
+  - type: input
+    id: owner_date
+    attributes:
+      label: 실측자·일자
+      placeholder: "정정인, 2026-10-19"

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hoodseek.local/contracts/state.schema.json",
+  "title": "HOOD&SEEK TCP state (v 4)",
+  "description": "SafetyCore → 모든 클라이언트, 2 Hz + 변화 즉시. SafetyCore가 확정한 판정 결과. Flutter는 이 값을 표시만 하고 임계값 비교를 하지 않는다 (설계서 §2.3·§3.2·§5.4). v 2(#116): 잠금 해제 남은 초 lock_release_left_s와 thresholds.lock_release_s를 더함. v 3(D-058·D-059): lock에 사용자 잠금 locked_user를 더함(위험·반려동물 잠금이 있으면 그쪽이 우선). hazard를 정상 조리 low(약불·대기)·mid(중불)·high(강불)와 warning(과열·과한 연기 단독)·danger·fault로 나눔(normal·caution 없앰), 사유 TEMP_MID·TEMP_HIGH, 임계 사본 t_mid·t_high. v4(#182)는 voice.last_intent=IND_SET·value 1..3을 추가한다. ui_cmd·voice는 v1·v2, hello·vision은 v1.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "type", "src", "seq", "t_ms", "p"],
+  "properties": {
+    "v": { "const": 4 },
+    "type": { "const": "state" },
+    "src": { "const": "core" },
+    "seq": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+    "t_ms": { "type": "integer", "minimum": 0 },
+    "p": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hazard", "presence", "lock", "lock_release_left_s", "fan", "induction", "sensors", "vision", "voice", "reasons", "alert", "thresholds", "uptime_s"],
+      "properties": {
+        "hazard": { "enum": ["low", "mid", "high", "warning", "danger", "fault"] },
+        "presence": { "enum": ["present", "absent", "unknown"] },
+        "lock": { "enum": ["unlocked", "locked_cat", "locked_danger", "locked_user"] },
+        "lock_release_left_s": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "위험 잠금 해제 조건 ①(hazard ≤ mid가 P_lock_release_s 동안 이어짐)의 남은 초. lock=locked_danger ∧ hazard ≤ mid이면 max(0, ceil(P_lock_release_s − 경과 s)), 그 외 null. 0이면 ① 충족. 표시용이고 해제 판정은 Core만 한다 (#116, D-051)"
+        },
+        "fan": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["level", "min", "requested", "ack"],
+          "properties": {
+            "level": { "$ref": "#/$defs/step" },
+            "min": { "$ref": "#/$defs/step" },
+            "requested": { "$ref": "#/$defs/step" },
+            "ack": { "type": "boolean" }
+          }
+        },
+        "induction": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["level", "allowed_on", "ack"],
+          "properties": {
+            "level": { "$ref": "#/$defs/step" },
+            "allowed_on": { "type": "boolean" },
+            "ack": { "type": "boolean" }
+          }
+        },
+        "sensors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["thermal", "pm"],
+          "properties": {
+            "thermal": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["valid", "max_c", "median_c", "metric"],
+              "properties": {
+                "valid": { "type": "boolean" },
+                "max_c": { "type": ["number", "null"], "minimum": -40, "maximum": 300 },
+                "median_c": { "type": ["number", "null"], "minimum": -40, "maximum": 300 },
+                "metric": { "type": ["number", "null"], "minimum": 0, "description": "T_metric = max − median (°C), 설계서 §3.1" }
+              },
+              "if": { "properties": { "valid": { "const": true } } },
+              "then": { "properties": { "max_c": { "type": "number" }, "median_c": { "type": "number" }, "metric": { "type": "number" } } },
+              "else": { "properties": { "max_c": { "type": "null" }, "median_c": { "type": "null" }, "metric": { "type": "null" } } }
+            },
+            "pm": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["valid", "pm25", "tsize", "baseline"],
+              "properties": {
+                "valid": { "type": "boolean" },
+                "pm25": { "type": ["number", "null"], "minimum": 0 },
+                "tsize": { "type": ["number", "null"], "minimum": 0, "description": "SPS30 typical particle size (µm)" },
+                "baseline": { "type": ["number", "null"], "minimum": 0, "description": "부팅 후 60 s 동안과 valid=false일 때는 null (설계서 §3.1)" }
+              },
+              "if": { "properties": { "valid": { "const": true } } },
+              "then": { "properties": { "pm25": { "type": "number" }, "tsize": { "type": "number" } } },
+              "else": { "properties": { "pm25": { "type": "null" }, "tsize": { "type": "null" }, "baseline": { "type": "null" } } }
+            }
+          }
+        },
+        "vision": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fresh", "person", "cat"],
+          "properties": {
+            "fresh": { "type": "boolean", "description": "마지막 vision 수신 후 2 s 이내" },
+            "person": { "type": "boolean", "description": "person_seen (최근 2 s 안 vision.person.seen)" },
+            "cat": { "type": "boolean", "description": "이번 tick의 cat_hit (seen ∧ score·ROI 조건)" }
+          },
+          "if": { "properties": { "fresh": { "const": false } } },
+          "then": { "properties": { "person": { "const": false }, "cat": { "const": false } } }
+        },
+        "voice": {
+          "description": "마지막 voice 명령의 처리 결과. 부팅 후 voice 명령이 없었으면 null.",
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["last_intent", "value", "accepted", "reason"],
+              "properties": {
+                "last_intent": { "enum": ["FAN_SET", "FAN_OFF", "IND_OFF", "IND_ON", "IND_UP", "IND_DOWN", "NONE", "IND_SET"] },
+                "value": { "type": ["integer", "null"], "minimum": 1, "maximum": 3, "description": "FAN_SET·IND_SET이면 1..3, 그 외 null" },
+                "accepted": { "type": "boolean" },
+                "reason": { "enum": [null, "LOCKED", "HAZARD", "ABSENT", "IND_NOACK", "NO_INTENT"] }
+              },
+              "allOf": [
+                {
+                  "if": { "properties": { "last_intent": { "enum": ["FAN_SET", "IND_SET"] } } },
+                  "then": { "properties": { "value": { "type": "integer" } } },
+                  "else": { "properties": { "value": { "type": "null" } } }
+                },
+                {
+                  "if": { "properties": { "accepted": { "const": true } } },
+                  "then": { "properties": { "reason": { "const": null } } },
+                  "else": { "properties": { "reason": { "type": "string" } } }
+                }
+              ]
+            }
+          ]
+        },
+        "reasons": {
+          "description": "현재 상태를 만든 조건 코드, 우선순위 순. 코드표는 contracts/README.md",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": ["SENSOR_FAULT", "TEMP_ABS", "TEMP_DANGER", "SMOKE", "TEMP_HIGH", "PM_WARN", "TEMP_MID", "HOLD", "ABSENT", "VISION_STALE", "CAT_NEAR", "ACK_WAIT", "UNLOCK_WAIT", "FAN_NOACK", "IND_NOACK"]
+          }
+        },
+        "alert": { "enum": ["NONE", "CAUTION", "WARNING", "DANGER", "CAT_LOCK", "OFFLINE_RECOVER", "CMD_REJECTED"] },
+        "thresholds": {
+          "description": "profiles/default.json 값의 표시용 사본(그래프 임계선). 판정에 쓰지 않는다. PM 선은 baseline + pm_warn / pm_smoke.",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["t_mid", "t_high", "t_danger", "pm_warn", "pm_smoke", "lock_release_s"],
+          "properties": {
+            "t_mid": { "type": "number", "minimum": 0 },
+            "t_high": { "type": "number", "minimum": 0 },
+            "t_danger": { "type": "number", "minimum": 0 },
+            "pm_warn": { "type": "number", "minimum": 0 },
+            "pm_smoke": { "type": "number", "minimum": 0 },
+            "lock_release_s": { "type": "number", "exclusiveMinimum": 0, "description": "P_lock_release_s 사본. lock_release_left_s 진행 원의 전체 길이" }
+          }
+        },
+        "uptime_s": { "type": "integer", "minimum": 0 }
+      },
+      "if": { "properties": { "lock": { "const": "locked_danger" }, "hazard": { "enum": ["low", "mid"] } } },
+      "then": { "properties": { "lock_release_left_s": { "type": "integer" } } },
+      "else": { "properties": { "lock_release_left_s": { "type": "null" } } }
+    }
+  },
+  "$defs": {
+    "step": { "type": "integer", "minimum": 0, "maximum": 3 }
+  }
+}

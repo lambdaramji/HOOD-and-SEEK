@@ -1,0 +1,99 @@
+name: "작업 (Task)"
+description: 구현·수정·통합 작업 한 건. 하루 안에 끝나는 크기로 쪼갭니다.
+title: "[T?] "
+labels: ["type: task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        제목은 `[T1] uart3 overlay 적용 후 /dev/ttyAMA1 실측` 처럼 **트랙 번호 + 결과가 보이는 문장**으로 씁니다.
+        이슈 하나 = PR 하나가 기본입니다. 커지면 쪼개서 Sub-issue로 연결합니다.
+  - type: dropdown
+    id: track
+    attributes:
+      label: 트랙
+      description: D-29 역할표 기준
+      options:
+        - "T1 Pi 4 SafetyCore 골격 (정정인)"
+        - "T2 판정 상태기계 (남현지)"
+        - "T3 ESP32 2종·박스 (정정인·김병직)"
+        - "T4 비전 노드 (김병직)"
+        - "T5 음성 노드 (이수현)"
+        - "T6 Flutter 대시보드 (임재범)"
+        - "T7 통합·영상·문서 (전원)"
+    validations:
+      required: true
+  - type: dropdown
+    id: node
+    attributes:
+      label: 대상 노드·경로
+      options:
+        - safety_core/
+        - vision_node/
+        - voice_node/
+        - flutter_app/
+        - firmware/esp32_fan_controller/
+        - firmware/esp32_cooktop/
+        - contracts/
+        - profiles/
+        - deploy/
+        - docs/
+        - 여러 경로 (본문에 명시)
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 우선순위
+      description: 데모 시나리오 등급과 같은 기준
+      options:
+        - Must
+        - Should
+        - Could
+    validations:
+      required: true
+  - type: input
+    id: scenario
+    attributes:
+      label: 관련 데모 시나리오
+      description: M1~M11 중 해당하는 것. 없으면 비워 둡니다.
+      placeholder: "M6, M7"
+  - type: textarea
+    id: goal
+    attributes:
+      label: 무엇을 하는가
+      description: 끝났을 때 어떤 상태가 되어야 하는지 한두 문장.
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: 완료 기준
+      description: 체크박스로. "동작한다"가 아니라 **무엇으로 확인하는지**를 씁니다.
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+  - type: textarea
+    id: verify
+    attributes:
+      label: 검증 방법
+      description: 실행할 명령, 기대 출력, 실기기 여부. CLAUDE.md 검증 명령과 같은 것을 쓰면 됩니다.
+      placeholder: |
+        cmake -S safety_core -B safety_core/build && cmake --build safety_core/build && ctest --test-dir safety_core/build
+  - type: input
+    id: refs
+    attributes:
+      label: 근거·관련 결정
+      description: 설계서 절 번호, D-xx / P-0xx / Q-S?-? 번호, 관련 이슈·PR
+      placeholder: "설계서 §4.5, D-17, Q-S6-2"
+  - type: checkboxes
+    id: flags
+    attributes:
+      label: 해당하는 것
+      options:
+        - label: 계약(`contracts/`)을 바꾼다 → 라벨 `contract-change`, 양쪽 파서 동시 PR
+        - label: 안전 불변식(CLAUDE.md)을 건드린다 → 라벨 `safety-invariant`, PM 리뷰 필수
+        - label: 실기기(Pi·ESP32·센서)가 있어야 검증할 수 있다
+        - label: 다른 이슈가 끝나야 시작할 수 있다 (본문에 `Blocked by #번호`)

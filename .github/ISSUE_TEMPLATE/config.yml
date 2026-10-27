@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 설계서·계약 (읽기만)
+    url: https://github.com/lambdaramji/HOOD-SEEK/tree/main/docs
+    about: 이슈를 열기 전에 S3~S10 설계서, contracts/, docs/decision/ 을 먼저 확인합니다.
+  - name: Git 시작 가이드
+    url: https://github.com/lambdaramji/HOOD-SEEK/blob/main/docs/git-start-guide.md
+    about: 브랜치·커밋·PR이 처음이면 여기부터.

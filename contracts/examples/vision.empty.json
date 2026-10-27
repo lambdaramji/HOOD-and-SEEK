@@ -1,0 +1,4 @@
+{"v":1,"type":"vision","src":"vision","seq":903,"t_ms":127640,
+ "p":{"frame_w":640,"frame_h":480,"infer_ms":318,
+      "person":{"seen":false,"score":0.0,"bbox":null},
+      "cat":{"seen":false,"score":0.0,"bbox":null,"roi_overlap":0.0}}}

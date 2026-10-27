@@ -1,0 +1,100 @@
+# 모델·WAV·프로파일의 개인 로컬 경로만 치환. 원본은 저장소 밖 보존.
+# host-ctest.log
+Test project <시험 작업 PC>/build-asr
+    Start 1: command-parser
+1/8 Test #1: command-parser ...................   Passed    0.61 sec
+    Start 2: hi-lg-classifier
+2/8 Test #2: hi-lg-classifier .................   Passed    0.19 sec
+    Start 3: voice-field-evaluation
+3/8 Test #3: voice-field-evaluation ...........   Passed    0.03 sec
+    Start 4: voice-live-observer
+4/8 Test #4: voice-live-observer ..............   Passed    0.04 sec
+    Start 5: audio-pipeline
+5/8 Test #5: audio-pipeline ...................   Passed    0.32 sec
+    Start 6: voice-tcp-encoding
+6/8 Test #6: voice-tcp-encoding ...............   Passed    0.47 sec
+    Start 7: voice-tcp-loopback
+7/8 Test #7: voice-tcp-loopback ...............   Passed   32.35 sec
+    Start 8: voice-asr-options
+8/8 Test #8: voice-asr-options ................   Passed    0.04 sec
+
+100% tests passed, 0 tests failed out of 8
+
+Total Test time (real) =  34.07 sec
+# asr-publish.log
+event=vad_model_loaded count=1 load_ms=1 vad_threads=1 frame_samples=512 start_ms=224 end_ms=544
+event=model_loaded count=1 load_ms=368 model=sensevoice vad=streaming_silero mode=publish
+event=recognition_config model=sensevoice decoder=greedy language=ko use_itn=1 retry_limit=0 conf_kind=unavailable wire_conf=0 parser=hi_lg_jamo fan_on_publish=contract_pending activation_min=0.60 target_min=0.60 action_min=0.70 margin=0.10
+event=input path="<시험 작업 PC>/phrase-1-tail1s.wav" samples=73344
+event=asr_started index=1 model=sensevoice samples=57856
+event=asr index=1 model=sensevoice samples=57856 asr_ms=51 initial_text="하이엘지 후드약품." text="하이엘지 후드약품." conf=unavailable wire_conf=0 quality=asr_unscored retry_status=not_applicable intent=FAN_SET parser_reason=existing_whole_command activation_similarity=1 target_similarity=-1 action_similarity=-1 value=1 normalized_text="하이엘지, 후드약품." link_connected=1 link_lines=1 end_to_intent_ms=597 intent_monotonic_ns=2069502953559666 expired=0 disposition=sent wire_intent=FAN_SET publish_policy=hi_lg_v1 end_to_send_ms=597
+event=input_done
+event=input path="<시험 작업 PC>/phrase-2-tail1s.wav" samples=74880
+event=asr_started index=2 model=sensevoice samples=58880
+event=asr index=2 model=sensevoice samples=58880 asr_ms=62 initial_text="하이엘지 인덕션 꺼죠." text="하이엘지 인덕션 꺼죠." conf=unavailable wire_conf=0 quality=asr_unscored retry_status=not_applicable intent=IND_OFF parser_reason=existing_whole_command activation_similarity=1 target_similarity=-1 action_similarity=-1 normalized_text="하이엘지, 인덕션 꺼죠." link_connected=1 link_lines=2 end_to_intent_ms=606 intent_monotonic_ns=2069503029099250 expired=0 disposition=sent wire_intent=IND_OFF publish_policy=hi_lg_v1 end_to_send_ms=606
+event=input_done
+event=link_summary connected=1 received_lines=3 transmitted=2
+event=stopped frames=291 peak_dbfs=-3.77191 asr_calls=2 overlong_drops=0 utterances=2 retry_calls=0 vad_us=19925 max_vad_us=1315 candidates=2 transmitted=2
+# core.log
+[core] profile 로드: <작업 저장소>/profiles/default.json
+[tcp] listening :51878
+[state] {"v":1,"type":"state","src":"core","seq":1,"t_ms":2069502303,"p":{"hazard":"normal","presence":"unknown","lock":"unlocked","fan":{"level":3,"min":3,"requested":0,"ack":false},"induction":{"level":0,"allowed_on":false,"ack":false},"sensors":{"thermal":{"valid":false,"max_c":null,"median_c":null,"metric":null},"pm":{"valid":false,"pm25":null,"tsize":null,"baseline":null}},"vision":{"fresh":false,"person":false,"cat":false},"voice":null,"reasons":["VISION_STALE","FAN_NOACK","IND_NOACK"],"alert":"NONE","thresholds":{"t_caution":13.4,"t_warn":22.79,"t_danger":30.4,"pm_warn":30.0,"pm_smoke":50.0},"uptime_s":0}}
+[tcp] 127.0.0.1:51880 접속 (1/8)
+[tcp] 127.0.0.1:51880 hello (ui)
+[tcp] 127.0.0.1:51883 접속 (2/8)
+[tcp] 127.0.0.1:51883 hello (voice)
+[state] {"v":1,"type":"state","src":"core","seq":3,"t_ms":2069502956,"p":{"hazard":"normal","presence":"unknown","lock":"unlocked","fan":{"level":3,"min":3,"requested":1,"ack":false},"induction":{"level":0,"allowed_on":false,"ack":false},"sensors":{"thermal":{"valid":false,"max_c":null,"median_c":null,"metric":null},"pm":{"valid":false,"pm25":null,"tsize":null,"baseline":null}},"vision":{"fresh":false,"person":false,"cat":false},"voice":{"last_intent":"FAN_SET","value":1,"accepted":true,"reason":null},"reasons":["VISION_STALE","FAN_NOACK","IND_NOACK"],"alert":"NONE","thresholds":{"t_caution":13.4,"t_warn":22.79,"t_danger":30.4,"pm_warn":30.0,"pm_smoke":50.0},"uptime_s":0}}
+[state] {"v":1,"type":"state","src":"core","seq":4,"t_ms":2069503029,"p":{"hazard":"normal","presence":"unknown","lock":"unlocked","fan":{"level":3,"min":3,"requested":1,"ack":false},"induction":{"level":0,"allowed_on":false,"ack":false},"sensors":{"thermal":{"valid":false,"max_c":null,"median_c":null,"metric":null},"pm":{"valid":false,"pm25":null,"tsize":null,"baseline":null}},"vision":{"fresh":false,"person":false,"cat":false},"voice":{"last_intent":"IND_OFF","value":null,"accepted":true,"reason":null},"reasons":["VISION_STALE","FAN_NOACK","IND_NOACK"],"alert":"NONE","thresholds":{"t_caution":13.4,"t_warn":22.79,"t_danger":30.4,"pm_warn":30.0,"pm_smoke":50.0},"uptime_s":0}}
+[tcp] 127.0.0.1:51883 끊음: eof
+[tcp] 127.0.0.1:51880 끊음: eof
+[core] 종료 신호 — 정지
+# mode-default.log
+event=vad_model_loaded count=1 load_ms=0 vad_threads=1 frame_samples=512 start_ms=224 end_ms=544
+event=model_loaded count=1 load_ms=354 model=sensevoice vad=streaming_silero mode=observation_only
+event=recognition_config model=sensevoice decoder=greedy language=ko use_itn=1 retry_limit=0 conf_kind=unavailable wire_conf=0 parser=hi_lg_jamo fan_on_publish=contract_pending activation_min=0.60 target_min=0.60 action_min=0.70 margin=0.10
+event=input path="<시험 작업 PC>/phrase-1-tail1s.wav" samples=73344
+event=asr_started index=1 model=sensevoice samples=57856
+event=asr index=1 model=sensevoice samples=57856 asr_ms=42 initial_text="하이엘지 후드약품." text="하이엘지 후드약품." conf=unavailable wire_conf=0 quality=asr_unscored retry_status=not_applicable intent=FAN_SET parser_reason=existing_whole_command activation_similarity=1 target_similarity=-1 action_similarity=-1 value=1 normalized_text="하이엘지, 후드약품." link_connected=1 link_lines=12 end_to_intent_ms=586 intent_monotonic_ns=2069572678844166 expired=0 disposition=observation_only
+event=input_done
+event=input path="<시험 작업 PC>/phrase-2-tail1s.wav" samples=74880
+event=asr_started index=2 model=sensevoice samples=58880
+event=asr index=2 model=sensevoice samples=58880 asr_ms=43 initial_text="하이엘지 인덕션 꺼죠." text="하이엘지 인덕션 꺼죠." conf=unavailable wire_conf=0 quality=asr_unscored retry_status=not_applicable intent=IND_OFF parser_reason=existing_whole_command activation_similarity=1 target_similarity=-1 action_similarity=-1 normalized_text="하이엘지, 인덕션 꺼죠." link_connected=1 link_lines=12 end_to_intent_ms=587 intent_monotonic_ns=2069572730942750 expired=0 disposition=observation_only
+event=input_done
+event=input path="<비명령 WAV>" samples=80384
+event=asr_started index=3 model=sensevoice samples=45056
+event=asr index=3 model=sensevoice samples=45056 asr_ms=36 initial_text="오늘 날씨 좋 네." text="오늘 날씨 좋 네." conf=unavailable wire_conf=0 quality=asr_unscored retry_status=not_applicable intent=DROP parser_reason=activation_similarity_below_threshold activation_similarity=-1 target_similarity=-1 action_similarity=-1 link_connected=1 link_lines=12 end_to_intent_ms=581 intent_monotonic_ns=2069572776401416 expired=0 disposition=drop_text
+event=input_done noise_dbfs=-60.979
+event=link_summary connected=1 received_lines=12 transmitted=0
+event=stopped frames=448 peak_dbfs=-3.77191 asr_calls=3 overlong_drops=0 utterances=3 retry_calls=0 vad_us=23412 max_vad_us=93 candidates=2 transmitted=0
+# mode-publish.log
+event=vad_model_loaded count=1 load_ms=0 vad_threads=1 frame_samples=512 start_ms=224 end_ms=544
+event=model_loaded count=1 load_ms=361 model=sensevoice vad=streaming_silero mode=publish
+event=recognition_config model=sensevoice decoder=greedy language=ko use_itn=1 retry_limit=0 conf_kind=unavailable wire_conf=0 parser=hi_lg_jamo fan_on_publish=contract_pending activation_min=0.60 target_min=0.60 action_min=0.70 margin=0.10
+event=input path="<시험 작업 PC>/phrase-1-tail1s.wav" samples=73344
+event=asr_started index=1 model=sensevoice samples=57856
+event=asr index=1 model=sensevoice samples=57856 asr_ms=42 initial_text="하이엘지 후드약품." text="하이엘지 후드약품." conf=unavailable wire_conf=0 quality=asr_unscored retry_status=not_applicable intent=FAN_SET parser_reason=existing_whole_command activation_similarity=1 target_similarity=-1 action_similarity=-1 value=1 normalized_text="하이엘지, 후드약품." link_connected=1 link_lines=12 end_to_intent_ms=587 intent_monotonic_ns=2069573254134666 expired=0 disposition=sent wire_intent=FAN_SET publish_policy=hi_lg_v1 end_to_send_ms=587
+event=input_done
+event=input path="<시험 작업 PC>/phrase-2-tail1s.wav" samples=74880
+event=asr_started index=2 model=sensevoice samples=58880
+event=asr index=2 model=sensevoice samples=58880 asr_ms=44 initial_text="하이엘지 인덕션 꺼죠." text="하이엘지 인덕션 꺼죠." conf=unavailable wire_conf=0 quality=asr_unscored retry_status=not_applicable intent=IND_OFF parser_reason=existing_whole_command activation_similarity=1 target_similarity=-1 action_similarity=-1 normalized_text="하이엘지, 인덕션 꺼죠." link_connected=1 link_lines=24 end_to_intent_ms=588 intent_monotonic_ns=2069573306963583 expired=0 disposition=sent wire_intent=IND_OFF publish_policy=hi_lg_v1 end_to_send_ms=588
+event=input_done
+event=input path="<비명령 WAV>" samples=80384
+event=asr_started index=3 model=sensevoice samples=45056
+event=asr index=3 model=sensevoice samples=45056 asr_ms=38 initial_text="오늘 날씨 좋 네." text="오늘 날씨 좋 네." conf=unavailable wire_conf=0 quality=asr_unscored retry_status=not_applicable intent=DROP parser_reason=activation_similarity_below_threshold activation_similarity=-1 target_similarity=-1 action_similarity=-1 link_connected=1 link_lines=36 end_to_intent_ms=582 intent_monotonic_ns=2069573352902041 expired=0 disposition=drop_text
+event=input_done noise_dbfs=-60.979
+event=link_summary connected=1 received_lines=36 transmitted=2
+event=stopped frames=448 peak_dbfs=-3.77191 asr_calls=3 overlong_drops=0 utterances=3 retry_calls=0 vad_us=23930 max_vad_us=174 candidates=2 transmitted=2
+
+# Pi5 native binary/hash/tests/help
+bb7edf7d26222dd4c5436aaaf9981367628c9e6382378b38114c2327a9f4a77a  hoodseek-voice-observer
+02ca0c6ef0ef0c56d74edb6a58965f78f8a430230cc00d7c9854f0f33f76f6d7  voice_tcp_test_client_arm
+checks=8206 failures=0
+audio_checks=1559 failures=0
+hi_lg_checks=98 failures=0
+tcp_checks=50 failures=0
+(--model PATH [--fallback-model PATH] | --sensevoice-dir DIR) --vad-model PATH
+(--wav PATH [--wav PATH ...] | --pulse-source NAME [--seconds N])
+[--core-host IPV4 --core-port PORT] (default: observation only)
+[--min-score N --min-score-raise N] [--publish] [--capture-raw NEW_PATH]
+Publication requires a receiver. Whisper also requires explicit quality thresholds.
+SenseVoice uses HiLg parsing and wire conf=0 (ASR score unavailable); score/fallback options are rejected.

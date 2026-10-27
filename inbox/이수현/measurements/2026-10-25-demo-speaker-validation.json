@@ -1,0 +1,302 @@
+{
+  "date_kst": "2026-10-25",
+  "status": "pm_conditional_approval_fresh_negative_pending",
+  "source_baseline": "1fda3aad8f160dfcebead51223cdcc6efa039628",
+  "source_patch_manifest_sha256": "151a13172e43c237c797d2cc453feaf647ea16ff4091877c8380351f31ff5439",
+  "baseline_binary_sha256": "e9a395c478f1828024179c130969f0a546524640800cba0ee345be505a2d0684",
+  "tested_binary_sha256": "1c38613a7bf12c612c32a85b8c434863b2b4bf1f08e75f166beff4526ac8f1fc",
+  "model_sha256": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51",
+  "tokens_sha256": "f449eb28dc567533d7fa59be34e2abca8784f771850c78a47fb731a31429a1dc",
+  "vad_sha256": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987",
+  "configuration": {
+    "asr": "SenseVoiceSmall INT8 ko ITN greedy CPU4",
+    "vad_cpu": 1,
+    "vad_start_ms": 224,
+    "vad_end_ms": 544,
+    "preroll_ms": 992,
+    "max_speech_s": 4,
+    "max_buffer_s": 6,
+    "activation_min": 0.6,
+    "target_min": 0.6,
+    "action_min": 0.7,
+    "candidate_margin": 0.1,
+    "wire_conf": 0,
+    "default_publish": false
+  },
+  "complete_trials": [
+    {
+      "speaker": "nam_hyeonji",
+      "trial": "A",
+      "distance_cm": 120,
+      "correct_intent_and_core_accepted": 19,
+      "total": 25,
+      "percentage": 76,
+      "below80": true,
+      "binary_sha256": "e9a395c478f1828024179c130969f0a546524640800cba0ee345be505a2d0684",
+      "by_command": [
+        {
+          "command": "강풍",
+          "correct": 4,
+          "core_correct_accepted": 4,
+          "total": 5
+        },
+        {
+          "command": "중풍",
+          "correct": 2,
+          "core_correct_accepted": 2,
+          "total": 5
+        },
+        {
+          "command": "약풍",
+          "correct": 5,
+          "core_correct_accepted": 5,
+          "total": 5
+        },
+        {
+          "command": "팬 끄기",
+          "correct": 3,
+          "core_correct_accepted": 3,
+          "total": 5
+        },
+        {
+          "command": "인덕션 끄기",
+          "correct": 5,
+          "core_correct_accepted": 5,
+          "total": 5
+        }
+      ],
+      "latency": "original acoustic endpoint not annotated; even upper bound19 below20"
+    },
+    {
+      "speaker": "nam_hyeonji",
+      "trial": "B",
+      "distance_cm": 150,
+      "entered_distance_cm": 120,
+      "actual_distance_user_corrected": true,
+      "correct_intent_and_core_accepted": 18,
+      "total": 25,
+      "percentage": 72,
+      "below80": true,
+      "binary_sha256": "1c38613a7bf12c612c32a85b8c434863b2b4bf1f08e75f166beff4526ac8f1fc",
+      "by_command": [
+        {
+          "command": "강풍",
+          "correct": 5,
+          "core_accepted": 5,
+          "total": 5
+        },
+        {
+          "command": "중풍",
+          "correct": 4,
+          "core_accepted": 4,
+          "total": 5
+        },
+        {
+          "command": "약풍",
+          "correct": 3,
+          "core_accepted": 3,
+          "total": 5
+        },
+        {
+          "command": "팬 끄기",
+          "correct": 3,
+          "core_accepted": 3,
+          "total": 5
+        },
+        {
+          "command": "인덕션 끄기",
+          "correct": 3,
+          "core_accepted": 3,
+          "total": 5
+        }
+      ],
+      "one_read_error_corrected": true,
+      "strict_first_spoken_reference": 17,
+      "post_completion_commands_excluded": 2
+    },
+    {
+      "speaker": "suhyun",
+      "trial": "C",
+      "distance_cm_entered": 150,
+      "correct_intent_and_core_accepted": 24,
+      "total": 25,
+      "percentage": 96,
+      "by_command": [
+        {
+          "command": "강풍",
+          "correct": 5,
+          "core_accepted": 5,
+          "total": 5
+        },
+        {
+          "command": "중풍",
+          "correct": 5,
+          "core_accepted": 5,
+          "total": 5
+        },
+        {
+          "command": "약풍",
+          "correct": 5,
+          "core_accepted": 5,
+          "total": 5
+        },
+        {
+          "command": "팬 끄기",
+          "correct": 4,
+          "core_accepted": 4,
+          "total": 5
+        },
+        {
+          "command": "인덕션 끄기",
+          "correct": 5,
+          "core_accepted": 5,
+          "total": 5
+        }
+      ],
+      "binary_sha256": "1c38613a7bf12c612c32a85b8c434863b2b4bf1f08e75f166beff4526ac8f1fc",
+      "asr_events": 25,
+      "retries": 0,
+      "pre_or_post_trial_events": 0,
+      "max4s_drops": 0,
+      "core_recorder_gaps": 0,
+      "timely_correct_core_accepted_by_signal_annotation": 24,
+      "raw_audio_sha256": "879f4f67276b7145eba8572a1c7e016b01cca93c4d7c8b59ed67d8480a1caee1"
+    }
+  ],
+  "latency_suhyun": {
+    "scope": "original captured PCM acoustic signal annotation, not phonetic listening or VAD endpoint substitution",
+    "method": "Original ReSpeaker PCM band500-4000Hz20ms frame10ms hop; trailing background median+8dB; sustained tail; annotation uncertainty end-250/+100ms. Same Pi5 capture origin/intent monotonic timestamps.",
+    "all25_energy_curves_visually_checked": true,
+    "human_phonetic_listening": false,
+    "endpoint_uncertainty_ms": [
+      -250,
+      100
+    ],
+    "min_ms": 924.4756440000117,
+    "median_ms": 1162.228153000001,
+    "p95_ms": 1428.9986221999989,
+    "max_ms": 1482.1176610000039,
+    "conservative_max_ms": 1732.1176610000039,
+    "within3s": 25,
+    "correct_core_and_signal_time": 24,
+    "vad_estimate_ms": {
+      "scope": "VAD endpoint estimate, not human-annotated original audio endpoint",
+      "min_ms": 945,
+      "median_ms": 1055,
+      "max_ms": 1342
+    }
+  },
+  "negative_evidence": {
+    "baseline_binary_fresh_live": {
+      "binary_sha256": "e9a395c478f1828024179c130969f0a546524640800cba0ee345be505a2d0684",
+      "noncommands": 36,
+      "execution_candidates": 0,
+      "ambient_selected_seconds": 300,
+      "ambient_execution_candidates": 0,
+      "ambient_asr_events": 7,
+      "conditions": [
+        "fan off, ambient room sound",
+        "fan on, ambient noise, conversation"
+      ],
+      "negative_capture_continued_after_cap": true
+    },
+    "tested_binary_stored_audio_replay": {
+      "binary_sha256": "1c38613a7bf12c612c32a85b8c434863b2b4bf1f08e75f166beff4526ac8f1fc",
+      "files": 4,
+      "asr_events": 56,
+      "execution_candidates": 0,
+      "transmitted": 0,
+      "fresh_field_negative_trial": false,
+      "requires_pm_acceptance_for_reuse": true
+    }
+  },
+  "validation": {
+    "host_ctest": "7/7 passed",
+    "pi5_command_parser_checks": 8206,
+    "pi5_hi_lg_reported_checks": 271,
+    "pi5_audio_checks": 1569,
+    "pi5_tcp_encoding_checks": 60,
+    "pi5_failures": 0,
+    "scope_note": "boundary loops added too; printed hi_lg_checks counter does not enumerate every loop assertion"
+  },
+  "closure": {
+    "issue62_open": true,
+    "pr107_draft": true,
+    "pending": [
+      "fresh live negative36 shared by two speakers plus ambient300 at fixed runtime, execution0",
+      "document150cm demo position in issue67 and cue sheet",
+      "requested reviewer approvals on document-updated head and requiredCI",
+      "mergePR107; publish demonstration only after negative0; close62 as designated-speaker scope"
+    ]
+  },
+  "privacy": "Aggregate results, method and hashes only; no WAV, individual transcripts, per-prompt times, Core raw lines, IP/MAC/device identifiers or personal local paths.",
+  "original_approval_request": {
+    "demo_speaker": "suhyun",
+    "demo_supported_roles": [
+      "FAN_SET3",
+      "FAN_SET2",
+      "FAN_SET1",
+      "FAN_OFF",
+      "IND_OFF"
+    ],
+    "named_speaker_exception_to_nfr08": true,
+    "pm_proposal_source": "user relayed PM proposal; formal confirmation requested on GitHub",
+    "accept_stored_negative_audio_revalidation": true,
+    "accept_signal_endpoint_annotation": true,
+    "general_speaker_robustness_not_claimed": true
+  },
+  "pm_decision": {
+    "date_kst": "2026-10-25",
+    "url": "https://github.com/lambdaramji/HOOD-SEEK/issues/62#issuecomment-6393359736",
+    "named_speaker_nfr08": "failed; do not retroactively pass",
+    "named_speaker_results": [
+      14,
+      19,
+      18
+    ],
+    "demo_speaker": "suhyun",
+    "demo_distance_cm": 150,
+    "demo_roles": [
+      "FAN_SET3",
+      "FAN_SET2",
+      "FAN_SET1",
+      "FAN_OFF",
+      "IND_OFF"
+    ],
+    "conditional_approval": true,
+    "signal_endpoint_method_accepted": true,
+    "stored_negative_replay_accepted_as_final_condition": false,
+    "fresh_negative_required": {
+      "runtime_source": "55254b773cbfe9a891e3938fe24498f68ffee43c",
+      "binary_sha256": "1c38613a7bf12c612c32a85b8c434863b2b4bf1f08e75f166beff4526ac8f1fc",
+      "noncommands": 36,
+      "speakers": [
+        "suhyun",
+        "nam_hyeonji"
+      ],
+      "actual_ambient_seconds": 300,
+      "quiet_seconds": 150,
+      "fan_conversation_seconds": 150,
+      "publish": false,
+      "execution_candidates_required": 0,
+      "completed": false
+    },
+    "fixed_demo_position_documentation": "C test position at ReSpeaker150cm; record in issue67 and cue sheet",
+    "fallback": "switch immediately to touch if voice misbehaves",
+    "report_wording": "음성 조작은 지정 시연 화자1명(개발 담당) 기준24/25. 일반 화자(남현지72~76%)·대화·소음 강건성은 한계"
+  },
+  "review_confirmations": {
+    "contract_semantics": {
+      "reviewer": "ImymemineJ",
+      "url": "https://github.com/lambdaramji/HOOD-SEEK/pull/107#pullrequestreview-5641375459",
+      "confirmed": true,
+      "approve_pending_doc_fix": true
+    },
+    "code_ci_deploy": {
+      "reviewer": "jaebeom",
+      "url": "https://github.com/lambdaramji/HOOD-SEEK/pull/107#pullrequestreview-5641407678",
+      "approved_head": "55254b773cbfe9a891e3938fe24498f68ffee43c"
+    },
+    "scope_note": "contract semantics confirmation is separate from field publishing authorization; new-head approval must be checked"
+  }
+}

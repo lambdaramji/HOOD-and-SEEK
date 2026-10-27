@@ -1,0 +1,12 @@
+{"v": 4,"type":"state","src":"core","seq":121,"t_ms":61500,
+ "p":{"hazard":"low","presence":"present","lock":"locked_user","lock_release_left_s":null,
+      "fan":{"level":1,"min":0,"requested":1,"ack":true},
+      "induction":{"level":0,"allowed_on":false,"ack":true},
+      "sensors":{"thermal":{"valid":true,"max_c":36.1,"median_c":27.9,"metric":8.2},
+                 "pm":{"valid":true,"pm25":9.0,"tsize":0.71,"baseline":9.4}},
+      "vision":{"fresh":true,"person":true,"cat":false},
+      "voice":null,
+      "reasons":[],
+      "alert":"NONE",
+      "thresholds":{"t_mid":16,"t_high":22,"t_danger":30,"pm_warn":30,"pm_smoke":50,"lock_release_s":10},
+      "uptime_s":62}}

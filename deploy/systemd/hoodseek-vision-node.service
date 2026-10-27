@@ -1,0 +1,35 @@
+# HOOD&SEEK vision-node (Pi 5) — systemd 폴백 기동 (설계서 §8.2, Q-S10-1)
+# 관측만 보고한다. 이 프로세스가 죽으면 SafetyCore가 vision 2 s 만료로 presence=unknown 처리 (§2.4, F7).
+#
+# ATLAS는 / 가 읽기 전용이라 /etc/systemd/system에 둘 수 없다 [실측 2026-10-19].
+# systemd UnitPath에 들어 있는 /data/share/usr/lib/systemd/system에 둔다:
+#   cp hoodseek-vision-node.service /data/share/usr/lib/systemd/system/
+#   cp vision-node.env.example /data/hoodseek/vision-node.env   # 실제 Pi 4 IP·회전·ROI 경로로 수정
+#   cp vision_node/config/roi.json /data/hoodseek/config/roi.json   # 저장소의 ROI가 정본, 카메라 위치가 바뀌면 다시 캘리브레이션
+#   systemctl daemon-reload && systemctl start hoodseek-vision-node
+# 주의 [실측 2026-10-19 Pi 5]: 같은 경로의 multi-user.target.wants 링크는 부팅 때 무시된다
+# (/data가 부팅 7.27 s에 마운트되어 systemd가 기동 목록을 만들 때 보이지 않음).
+# #46 결정 전까지 부팅 뒤 위 start 한 줄을 사람이 실행한다 (시연 운영 체크리스트 항목).
+# 결론이 바뀌면 SafetyCore 유닛(hoodseek-safety-core.service)과 함께 고친다.
+# Restart=always [실측 2026-10-19 Pi 5]: kill -9 1 s 뒤 재기동, 1.5 s 간격 6연속 kill에도 failed 없이 NRestarts=7.
+[Unit]
+Description=HOOD&SEEK vision-node (V4L2 + ECO.AI YOLOX -> SafetyCore TCP vision)
+# Camera unplug (F7) makes the node exit until the camera is back; never stop retrying.
+StartLimitIntervalSec=0
+
+[Service]
+# User= 없음 = root. /dev/video0은 root:video 660인데 video 그룹에는 pipewire뿐이고, /etc가 읽기 전용이라
+# 전용 계정을 만들 수 없다 [실측 2026-10-19 Pi 5]. SafetyCore 유닛도 root로 돈다(#46).
+Type=simple
+WorkingDirectory=/data/hoodseek
+EnvironmentFile=/data/hoodseek/vision-node.env
+# A platform library writes default.profraw into the working directory; keep it off the read-only rootfs.
+Environment=LLVM_PROFILE_FILE=/dev/null
+# Per-frame records go to /dev/null (SafetyCore logs every tick); faults still reach the journal via stderr.
+# $PREVIEW_ARGS unbraced: unset or empty in an older env file adds no argument, so the video stays off.
+ExecStart=/data/hoodseek/bin/hoodseek_vision --camera /dev/video0 --model /data/ecoai/assets/models/object_detection/yolox.tflite --threads ${THREADS} --rotate ${ROTATE} --core ${CORE} --roi ${ROI} --output /dev/null $PREVIEW_ARGS
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target

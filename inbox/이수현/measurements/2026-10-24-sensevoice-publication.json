@@ -1,0 +1,1622 @@
+{
+  "date": "2026-10-24 KST",
+  "scope": "SenseVoice opt-in TCP v1 publication, isolated receivers; not physical hardware execution",
+  "reused_live55": {
+    "summary": {
+      "input": "existing live55 first transcripts, no ASR rerun",
+      "first_attempts": 55,
+      "human_retry_excluded": 1,
+      "execution_intents": 24,
+      "NONE": 16,
+      "DROP": 15,
+      "negative_execution_intents": 0,
+      "wire_schema_failures": 0,
+      "operational_hardware_control": false
+    },
+    "trials": [
+      {
+        "trial_id": "N01",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N02",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N03",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N04",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N05",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N06",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N07",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N08",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N09",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N10",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N11",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N12",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N13",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N14",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N15",
+        "expected_class": "DROP",
+        "wire": null
+      },
+      {
+        "trial_id": "N16",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 1,
+          "t_ms": 2069502201,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 지금 몇 시야?",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N17",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 2,
+          "t_ms": 2069502201,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 오늘 날씨 알려줘.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N18",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 3,
+          "t_ms": 2069502204,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 타이머5분 맞춰줘.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N19",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 4,
+          "t_ms": 2069502204,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 부대찌개 레시피 알려줘.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N20",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 5,
+          "t_ms": 2069502205,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 푸드 코트 위치 알려줘.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N21",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 6,
+          "t_ms": 2069502206,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 포드 자동차 가격 알려줘.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N22",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 7,
+          "t_ms": 2069502207,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 인덕션 켜지 마.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N23",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 8,
+          "t_ms": 2069502208,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 펜 끄지마.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N24",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 9,
+          "t_ms": 2069502208,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 화력 올리지 마.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N25",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 10,
+          "t_ms": 2069502208,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 펜은 그대로 더.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N26",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 11,
+          "t_ms": 2069502208,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 인덕션 켜도 돼?",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N27",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 12,
+          "t_ms": 2069502208,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 펜이 지금 켜져있어.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N28",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 13,
+          "t_ms": 2069502208,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 후드필터는 어떻게 청소해?",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N29",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 14,
+          "t_ms": 2069502209,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 아까 내가펜 꺼달고 했잖아.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "N30",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 15,
+          "t_ms": 2069502209,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 냄새가 조금 나네.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P01",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 16,
+          "t_ms": 2069502210,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 3,
+            "text": "하이엘지, 후드 강풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P02",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 17,
+          "t_ms": 2069502210,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 2,
+            "text": "하이엘지, 후드 중풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P03",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 18,
+          "t_ms": 2069502210,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 1,
+            "text": "하이엘지, 후드 약품.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P04",
+        "expected_class": "FAN_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 19,
+          "t_ms": 2069502210,
+          "p": {
+            "intent": "FAN_OFF",
+            "text": "하이엘지, 후드 팬꺼.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P05",
+        "expected_class": "IND_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 20,
+          "t_ms": 2069502210,
+          "p": {
+            "intent": "IND_OFF",
+            "text": "하이엘지, 후드 인덕션 꺼.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P06",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 21,
+          "t_ms": 2069502211,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 3,
+            "text": "하이엘지, 후드 강풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P07",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 22,
+          "t_ms": 2069502211,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 2,
+            "text": "하이엘지, 후드 중풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P08",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 23,
+          "t_ms": 2069502211,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 1,
+            "text": "하이엘지, 후드 약품.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P09",
+        "expected_class": "FAN_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 24,
+          "t_ms": 2069502211,
+          "p": {
+            "intent": "FAN_OFF",
+            "text": "하이엘지, 후드 팬꺼.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P10",
+        "expected_class": "IND_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 25,
+          "t_ms": 2069502211,
+          "p": {
+            "intent": "IND_OFF",
+            "text": "하이엘지, 후드 인덕션 꺼.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P11",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 26,
+          "t_ms": 2069502211,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 3,
+            "text": "하이엘지, 후드 강풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P12",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 27,
+          "t_ms": 2069502211,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 2,
+            "text": "하이엘지, 후드 중풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P13",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 28,
+          "t_ms": 2069502212,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 1,
+            "text": "하이엘지, 후두 약풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P14",
+        "expected_class": "FAN_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 29,
+          "t_ms": 2069502212,
+          "p": {
+            "intent": "FAN_OFF",
+            "text": "하이엘지, 후드 팬 꺼.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P15",
+        "expected_class": "NONE",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 30,
+          "t_ms": 2069502212,
+          "p": {
+            "intent": "NONE",
+            "text": "하이엘지, 후드 인덕션 거.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P16",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 31,
+          "t_ms": 2069502212,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 3,
+            "text": "하이엘지, 후드 강풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P17",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 32,
+          "t_ms": 2069502213,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 2,
+            "text": "하이엘지, 후드 중풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P18",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 33,
+          "t_ms": 2069502213,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 1,
+            "text": "하이엘지, 후드 약품.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P19",
+        "expected_class": "FAN_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 34,
+          "t_ms": 2069502213,
+          "p": {
+            "intent": "FAN_OFF",
+            "text": "하이엘지, 후드펜꺼.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P20",
+        "expected_class": "IND_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 35,
+          "t_ms": 2069502213,
+          "p": {
+            "intent": "IND_OFF",
+            "text": "하이엘지, 후드 인덕션 꺼.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P21",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 36,
+          "t_ms": 2069502213,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 3,
+            "text": "하이엘지, 후드 강풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P22",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 37,
+          "t_ms": 2069502213,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 2,
+            "text": "하이엘지, 후드 중풍.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P23",
+        "expected_class": "FAN_SET",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 38,
+          "t_ms": 2069502214,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 1,
+            "text": "하이엘지, 후드 약품.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P24",
+        "expected_class": "FAN_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 39,
+          "t_ms": 2069502214,
+          "p": {
+            "intent": "FAN_OFF",
+            "text": "하이엘지, 후드 팬꺼.",
+            "conf": 0
+          }
+        }
+      },
+      {
+        "trial_id": "P25",
+        "expected_class": "IND_OFF",
+        "wire": {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 40,
+          "t_ms": 2069502214,
+          "p": {
+            "intent": "IND_OFF",
+            "text": "하이엘지, 후드 인덕션 꺼.",
+            "conf": 0
+          }
+        }
+      }
+    ]
+  },
+  "host": {
+    "cmake_release_ctest": "8/8 PASS",
+    "loopback_seconds": 32.35,
+    "asr_option_checks": 6,
+    "tcp_encoding_checks": 50,
+    "new_hi_lg_network_scenarios": 3,
+    "schema_version": "jsonschema 4.23.0"
+  },
+  "actual_asr_core": {
+    "summary": {
+      "input": "2 saved ReSpeaker WAVs -> VAD -> actual SenseVoice -> TCP proxy -> actual SafetyCore",
+      "input_transform": "each saved WAV plus 1 second zero tail to provide required VAD endpoint; speech samples unchanged",
+      "asr": 2,
+      "hello": 1,
+      "voice": 2,
+      "Core_voice_results": [
+        {
+          "last_intent": "FAN_SET",
+          "value": 1,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "last_intent": "IND_OFF",
+          "value": null,
+          "accepted": true,
+          "reason": null
+        }
+      ],
+      "schema_failures": 0,
+      "physical_mic_used": false,
+      "i2c": "none",
+      "fan_uart": "none",
+      "cook_uart": "none",
+      "operational_hardware_control": false
+    },
+    "wire": [
+      {
+        "v": 1,
+        "type": "hello",
+        "src": "voice",
+        "seq": 0,
+        "t_ms": 2069502894,
+        "p": {
+          "node": "voice-node",
+          "ver": "0.1.0"
+        }
+      },
+      {
+        "v": 1,
+        "type": "voice",
+        "src": "voice",
+        "seq": 1,
+        "t_ms": 2069502953,
+        "p": {
+          "intent": "FAN_SET",
+          "value": 1,
+          "text": "하이엘지, 후드약품.",
+          "conf": 0
+        }
+      },
+      {
+        "v": 1,
+        "type": "voice",
+        "src": "voice",
+        "seq": 2,
+        "t_ms": 2069503029,
+        "p": {
+          "intent": "IND_OFF",
+          "text": "하이엘지, 인덕션 꺼죠.",
+          "conf": 0
+        }
+      }
+    ],
+    "states": [
+      {
+        "v": 1,
+        "type": "state",
+        "src": "core",
+        "seq": 1,
+        "t_ms": 2069502303,
+        "p": {
+          "hazard": "normal",
+          "presence": "unknown",
+          "lock": "unlocked",
+          "fan": {
+            "level": 3,
+            "min": 3,
+            "requested": 0,
+            "ack": false
+          },
+          "induction": {
+            "level": 0,
+            "allowed_on": false,
+            "ack": false
+          },
+          "sensors": {
+            "thermal": {
+              "valid": false,
+              "max_c": null,
+              "median_c": null,
+              "metric": null
+            },
+            "pm": {
+              "valid": false,
+              "pm25": null,
+              "tsize": null,
+              "baseline": null
+            }
+          },
+          "vision": {
+            "fresh": false,
+            "person": false,
+            "cat": false
+          },
+          "voice": null,
+          "reasons": [
+            "VISION_STALE",
+            "FAN_NOACK",
+            "IND_NOACK"
+          ],
+          "alert": "NONE",
+          "thresholds": {
+            "t_caution": 13.4,
+            "t_warn": 22.79,
+            "t_danger": 30.4,
+            "pm_warn": 30.0,
+            "pm_smoke": 50.0
+          },
+          "uptime_s": 0
+        }
+      },
+      {
+        "v": 1,
+        "type": "state",
+        "src": "core",
+        "seq": 2,
+        "t_ms": 2069502804,
+        "p": {
+          "hazard": "normal",
+          "presence": "unknown",
+          "lock": "unlocked",
+          "fan": {
+            "level": 3,
+            "min": 3,
+            "requested": 0,
+            "ack": false
+          },
+          "induction": {
+            "level": 0,
+            "allowed_on": false,
+            "ack": false
+          },
+          "sensors": {
+            "thermal": {
+              "valid": false,
+              "max_c": null,
+              "median_c": null,
+              "metric": null
+            },
+            "pm": {
+              "valid": false,
+              "pm25": null,
+              "tsize": null,
+              "baseline": null
+            }
+          },
+          "vision": {
+            "fresh": false,
+            "person": false,
+            "cat": false
+          },
+          "voice": null,
+          "reasons": [
+            "VISION_STALE",
+            "FAN_NOACK",
+            "IND_NOACK"
+          ],
+          "alert": "NONE",
+          "thresholds": {
+            "t_caution": 13.4,
+            "t_warn": 22.79,
+            "t_danger": 30.4,
+            "pm_warn": 30.0,
+            "pm_smoke": 50.0
+          },
+          "uptime_s": 0
+        }
+      },
+      {
+        "v": 1,
+        "type": "state",
+        "src": "core",
+        "seq": 3,
+        "t_ms": 2069502956,
+        "p": {
+          "hazard": "normal",
+          "presence": "unknown",
+          "lock": "unlocked",
+          "fan": {
+            "level": 3,
+            "min": 3,
+            "requested": 1,
+            "ack": false
+          },
+          "induction": {
+            "level": 0,
+            "allowed_on": false,
+            "ack": false
+          },
+          "sensors": {
+            "thermal": {
+              "valid": false,
+              "max_c": null,
+              "median_c": null,
+              "metric": null
+            },
+            "pm": {
+              "valid": false,
+              "pm25": null,
+              "tsize": null,
+              "baseline": null
+            }
+          },
+          "vision": {
+            "fresh": false,
+            "person": false,
+            "cat": false
+          },
+          "voice": {
+            "last_intent": "FAN_SET",
+            "value": 1,
+            "accepted": true,
+            "reason": null
+          },
+          "reasons": [
+            "VISION_STALE",
+            "FAN_NOACK",
+            "IND_NOACK"
+          ],
+          "alert": "NONE",
+          "thresholds": {
+            "t_caution": 13.4,
+            "t_warn": 22.79,
+            "t_danger": 30.4,
+            "pm_warn": 30.0,
+            "pm_smoke": 50.0
+          },
+          "uptime_s": 0
+        }
+      },
+      {
+        "v": 1,
+        "type": "state",
+        "src": "core",
+        "seq": 4,
+        "t_ms": 2069503029,
+        "p": {
+          "hazard": "normal",
+          "presence": "unknown",
+          "lock": "unlocked",
+          "fan": {
+            "level": 3,
+            "min": 3,
+            "requested": 1,
+            "ack": false
+          },
+          "induction": {
+            "level": 0,
+            "allowed_on": false,
+            "ack": false
+          },
+          "sensors": {
+            "thermal": {
+              "valid": false,
+              "max_c": null,
+              "median_c": null,
+              "metric": null
+            },
+            "pm": {
+              "valid": false,
+              "pm25": null,
+              "tsize": null,
+              "baseline": null
+            }
+          },
+          "vision": {
+            "fresh": false,
+            "person": false,
+            "cat": false
+          },
+          "voice": {
+            "last_intent": "IND_OFF",
+            "value": null,
+            "accepted": true,
+            "reason": null
+          },
+          "reasons": [
+            "VISION_STALE",
+            "FAN_NOACK",
+            "IND_NOACK"
+          ],
+          "alert": "NONE",
+          "thresholds": {
+            "t_caution": 13.4,
+            "t_warn": 22.79,
+            "t_danger": 30.4,
+            "pm_warn": 30.0,
+            "pm_smoke": 50.0
+          },
+          "uptime_s": 0
+        }
+      },
+      {
+        "v": 1,
+        "type": "state",
+        "src": "core",
+        "seq": 5,
+        "t_ms": 2069503309,
+        "p": {
+          "hazard": "normal",
+          "presence": "unknown",
+          "lock": "unlocked",
+          "fan": {
+            "level": 3,
+            "min": 3,
+            "requested": 1,
+            "ack": false
+          },
+          "induction": {
+            "level": 0,
+            "allowed_on": false,
+            "ack": false
+          },
+          "sensors": {
+            "thermal": {
+              "valid": false,
+              "max_c": null,
+              "median_c": null,
+              "metric": null
+            },
+            "pm": {
+              "valid": false,
+              "pm25": null,
+              "tsize": null,
+              "baseline": null
+            }
+          },
+          "vision": {
+            "fresh": false,
+            "person": false,
+            "cat": false
+          },
+          "voice": {
+            "last_intent": "IND_OFF",
+            "value": null,
+            "accepted": true,
+            "reason": null
+          },
+          "reasons": [
+            "VISION_STALE",
+            "FAN_NOACK",
+            "IND_NOACK"
+          ],
+          "alert": "NONE",
+          "thresholds": {
+            "t_caution": 13.4,
+            "t_warn": 22.79,
+            "t_danger": 30.4,
+            "pm_warn": 30.0,
+            "pm_smoke": 50.0
+          },
+          "uptime_s": 1
+        }
+      }
+    ]
+  },
+  "actual_asr_modes": [
+    {
+      "mode": "default",
+      "asr": 3,
+      "hello": 1,
+      "voice": 0,
+      "DROP": 1,
+      "wire": [
+        {
+          "v": 1,
+          "type": "hello",
+          "src": "voice",
+          "seq": 0,
+          "t_ms": 2069572630,
+          "p": {
+            "node": "voice-node",
+            "ver": "0.1.0"
+          }
+        }
+      ],
+      "schema_failures": 0,
+      "physical_hardware": false
+    },
+    {
+      "mode": "publish",
+      "asr": 3,
+      "hello": 1,
+      "voice": 2,
+      "DROP": 1,
+      "wire": [
+        {
+          "v": 1,
+          "type": "hello",
+          "src": "voice",
+          "seq": 0,
+          "t_ms": 2069573205,
+          "p": {
+            "node": "voice-node",
+            "ver": "0.1.0"
+          }
+        },
+        {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 1,
+          "t_ms": 2069573254,
+          "p": {
+            "intent": "FAN_SET",
+            "value": 1,
+            "text": "하이엘지, 후드약품.",
+            "conf": 0
+          }
+        },
+        {
+          "v": 1,
+          "type": "voice",
+          "src": "voice",
+          "seq": 2,
+          "t_ms": 2069573306,
+          "p": {
+            "intent": "IND_OFF",
+            "text": "하이엘지, 인덕션 꺼죠.",
+            "conf": 0
+          }
+        }
+      ],
+      "schema_failures": 0,
+      "physical_hardware": false
+    }
+  ],
+  "asr_publish_events": [
+    {
+      "event": "asr",
+      "index": "1",
+      "model": "sensevoice",
+      "samples": "57856",
+      "asr_ms": "51",
+      "initial_text": "하이엘지 후드약품.",
+      "text": "하이엘지 후드약품.",
+      "conf": "unavailable",
+      "wire_conf": "0",
+      "quality": "asr_unscored",
+      "retry_status": "not_applicable",
+      "intent": "FAN_SET",
+      "parser_reason": "existing_whole_command",
+      "activation_similarity": "1",
+      "target_similarity": "-1",
+      "action_similarity": "-1",
+      "value": "1",
+      "normalized_text": "하이엘지, 후드약품.",
+      "link_connected": "1",
+      "link_lines": "1",
+      "end_to_intent_ms": "597",
+      "intent_monotonic_ns": "2069502953559666",
+      "expired": "0",
+      "disposition": "sent",
+      "wire_intent": "FAN_SET",
+      "publish_policy": "hi_lg_v1",
+      "end_to_send_ms": "597"
+    },
+    {
+      "event": "asr",
+      "index": "2",
+      "model": "sensevoice",
+      "samples": "58880",
+      "asr_ms": "62",
+      "initial_text": "하이엘지 인덕션 꺼죠.",
+      "text": "하이엘지 인덕션 꺼죠.",
+      "conf": "unavailable",
+      "wire_conf": "0",
+      "quality": "asr_unscored",
+      "retry_status": "not_applicable",
+      "intent": "IND_OFF",
+      "parser_reason": "existing_whole_command",
+      "activation_similarity": "1",
+      "target_similarity": "-1",
+      "action_similarity": "-1",
+      "normalized_text": "하이엘지, 인덕션 꺼죠.",
+      "link_connected": "1",
+      "link_lines": "2",
+      "end_to_intent_ms": "606",
+      "intent_monotonic_ns": "2069503029099250",
+      "expired": "0",
+      "disposition": "sent",
+      "wire_intent": "IND_OFF",
+      "publish_policy": "hi_lg_v1",
+      "end_to_send_ms": "606"
+    }
+  ],
+  "binary_sha256": {
+    "arm64": "bb7edf7d26222dd4c5436aaaf9981367628c9e6382378b38114c2327a9f4a77a",
+    "mac": "11077982a5803ec6eefda93f7c24cdcba8d6218be1f817a06e172c3f52178748"
+  },
+  "source_sha256": {
+    "audio_observer.cpp": "2d3f1a7a5711066b344589fe5219e37fa58c46cf551daba36ce6868d4546d7c0",
+    "audio_pipeline.cpp": "4169828806a580ea39cdd86e5128f7e6ac51e690fcaa3fb6bbcbb808f3a48b10",
+    "audio_pipeline.h": "f85cd117ef87fa9b32e063b468bcef6caf96ab6ef660ccdd8c44d8ebc425bc4a",
+    "command_parser.cpp": "8a6aadb189a21b402b9aa2d36b77b2a63d7ed2cd254ff7a3aad5515543aa96c9",
+    "command_parser.h": "ce5789168c960115fe6c5975ca7980fc4c6f17619c3524039732fc10488c5f84",
+    "hi_lg_classifier.h": "5ab5b605251d91d8b38a9e2fa5a3bd3dd0ecd9c848e8a32694a94219094bf616",
+    "hi_lg_rules.h": "0962a38f3ae6a8db6449d37d0309a349f159140b550af42045a55f9ead525e23",
+    "voice_tcp.cpp": "ce841b79d65e145777ffcbc277fd708c94242e5c27afdfd14b1b486860fe03ba",
+    "voice_tcp.h": "696147a3eb0fbdb72c3c7c509011afd8e71ee8e9f9cdef7b2ff7361060b4545d"
+  },
+  "pending": [
+    "official designated-speaker NFR-08",
+    "short-question ASR false positives",
+    "PM/Core/contract approval for HiLg and unscored conf=0",
+    "fan on/direction wire policy",
+    "production systemd manual start and real hardware/Flutter test"
+  ],
+  "pi5": {
+    "arm_binary_sha256": "bb7edf7d26222dd4c5436aaaf9981367628c9e6382378b38114c2327a9f4a77a",
+    "separate_test_directory": true,
+    "production_service_replaced": false,
+    "parser_checks": 8206,
+    "audio_checks": 1559,
+    "hi_lg_checks": 98,
+    "tcp_checks": 50,
+    "failures": 0,
+    "native_help": "PASS",
+    "actual_wave_to_core": "NOT COMPLETED: SSH direct/proxy connections timed out during additional fixture transfer/reverse tunnel setup; no microphone capture or production publication started"
+  },
+  "pre_pr_review_20261024": {
+    "source_tree_sha": "514032140635c21416690e7677f12e93b841e9fe",
+    "remote_head": "936914dd78f26855a0ebec79728ef5deb34ef1e3",
+    "scope": "Mac saved-input regression; no microphone, Pi5 or operational hardware run; C++ unchanged",
+    "ctest": {
+      "passed": 8,
+      "failed": 0,
+      "loopback_s": 32.36,
+      "total_s": 33.95,
+      "initial_restricted_bind_error": "PermissionError: [Errno 1] Operation not permitted",
+      "rerun": "localhost sockets permitted"
+    },
+    "linker_warning": "ld: warning: ignoring duplicate libraries: 'whisper/src/libwhisper.a'",
+    "jsonschema_version": "4.23.0",
+    "contracts": {
+      "valid_examples": 14,
+      "expected_rejections": 23,
+      "failures": 0
+    },
+    "live55_tcp_replay": {
+      "input": "existing live55 first transcripts, no ASR rerun",
+      "first_attempts": 55,
+      "human_retry_excluded": 1,
+      "execution_intents": 24,
+      "NONE": 16,
+      "DROP": 15,
+      "negative_execution_intents": 0,
+      "wire_schema_failures": 0,
+      "operational_hardware_control": false
+    },
+    "wav_to_isolated_core": {
+      "input": "2 saved ReSpeaker WAVs -> VAD -> actual SenseVoice -> TCP proxy -> actual SafetyCore",
+      "input_transform": "each saved WAV plus 1 second zero tail to provide required VAD endpoint; speech samples unchanged",
+      "asr": 2,
+      "hello": 1,
+      "voice": 2,
+      "Core_voice_results": [
+        {
+          "last_intent": "FAN_SET",
+          "value": 1,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "last_intent": "IND_OFF",
+          "value": null,
+          "accepted": true,
+          "reason": null
+        }
+      ],
+      "schema_failures": 0,
+      "physical_mic_used": false,
+      "i2c": "none",
+      "fan_uart": "none",
+      "cook_uart": "none",
+      "operational_hardware_control": false
+    },
+    "mode_comparison": [
+      {
+        "mode": "default",
+        "asr": 3,
+        "hello": 1,
+        "voice": 0,
+        "DROP": 1,
+        "schema_failures": 0,
+        "physical_hardware": false
+      },
+      {
+        "mode": "publish",
+        "asr": 3,
+        "hello": 1,
+        "voice": 2,
+        "DROP": 1,
+        "schema_failures": 0,
+        "physical_hardware": false
+      }
+    ],
+    "mac_binary_sha256": "220e6b281135e77c10a9c38af1bc4a5df64ff17e7081b84731ea25a76ad3db7a",
+    "raw_log_sha256": {
+      "asr-publish.log": "df8f90097027f73b8de7ce962f22d2fa7860c2887fe32f905948674a2993bdd9",
+      "core.log": "f73f36f427b35ff2472ab8715cce189ae110bfec5c77cf47cadbad89d155f6aa",
+      "mode-default.log": "0fd413239ea82fc4567ab8be2be357683dd20514559273383934783a5cbea7d3",
+      "mode-publish.log": "385076c215610a22561c80a5a72b5247270469e6f7b6e87e28ef04732c3150fb"
+    },
+    "source_sha256": {
+      "voice_node/src/audio_observer.cpp": "2d3f1a7a5711066b344589fe5219e37fa58c46cf551daba36ce6868d4546d7c0",
+      "voice_node/src/voice_tcp.cpp": "ce841b79d65e145777ffcbc277fd708c94242e5c27afdfd14b1b486860fe03ba",
+      "voice_node/src/hi_lg_classifier.h": "5ab5b605251d91d8b38a9e2fa5a3bd3dd0ecd9c848e8a32694a94219094bf616",
+      "voice_node/src/hi_lg_rules.h": "0962a38f3ae6a8db6449d37d0309a349f159140b550af42045a55f9ead525e23"
+    },
+    "physical_hardware_control": false,
+    "official_nfr08_verified": false,
+    "pm_approval": false
+  },
+  "pi5_operating_followup_20261024": {
+    "binary_sha256": "bb7edf7d26222dd4c5436aaaf9981367628c9e6382378b38114c2327a9f4a77a",
+    "operating_files_backed_up": true,
+    "env_migrated": true,
+    "default_publication": false,
+    "automatic_boot_enabled": false,
+    "saved_wav_to_isolated_core": {
+      "input": "Pi5: 2 saved ReSpeaker WAVs -> VAD -> SenseVoice -> SSH reverse tunnel -> isolated host SafetyCore",
+      "input_transform": "each saved WAV plus 1 second zero tail to provide required VAD endpoint; speech samples unchanged",
+      "asr": 2,
+      "hello": 1,
+      "voice": 2,
+      "Core_voice_results": [
+        {
+          "last_intent": "FAN_SET",
+          "value": 1,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "last_intent": "IND_OFF",
+          "value": null,
+          "accepted": true,
+          "reason": null
+        }
+      ],
+      "schema_failures": 0,
+      "physical_mic_used": false,
+      "i2c": "none",
+      "fan_uart": "none",
+      "cook_uart": "none",
+      "operational_hardware_control": false
+    },
+    "initial_missing_wave_failure_preserved": true,
+    "operating_core": "inactive; user requested hold during another experiment",
+    "real_core_ui_hardware_path_verified": false,
+    "diagnostic_log_fix": {
+      "issue": "non-event PulseAudio warning with apostrophe was shown as parse_error",
+      "event_prefix_guard": true,
+      "raw_warning_preserved": true,
+      "self_test_checks": 11,
+      "ctest_passed": 8,
+      "ctest_failed": 0,
+      "ctest_total_s": 32.64,
+      "loopback_s": 32.31,
+      "tool_sha256": "0dcdeb5b68d457f3768a95f153232e8adbe1969f0423681b3a22a4c1c4f5b320"
+    },
+    "nam_hyeonji_live25": {
+      "condition": "fan_on_noise",
+      "planned": 25,
+      "completed": 0,
+      "official_nfr08": false,
+      "pretrial_asr_excluded": 2
+    }
+  },
+  "terminal_question_policy_20261024": {
+    "scope": "activated HiLg terminal question punctuation policy; not ASR prosody improvement",
+    "approval": "user relayed PM/Core agreement; formal PR approval pending",
+    "unchanged": [
+      "activation required",
+      "permission/state questions and negatives blocked",
+      "Whisper/Hood policy",
+      "undirected fan-on wire NONE",
+      "wire schema v1",
+      "Core safety policies",
+      "default publication off"
+    ],
+    "mac_ctest": {
+      "passed": 8,
+      "failed": 0,
+      "total_s": 33.72,
+      "loopback_s": 32.35
+    },
+    "pi5_native_checks": {
+      "parser": 8206,
+      "audio": 1559,
+      "hi_lg": 145,
+      "tcp": 55,
+      "failures": 0
+    },
+    "contracts": {
+      "jsonschema": "4.23.0",
+      "valid_examples": 14,
+      "expected_rejections": 23,
+      "failures": 0
+    },
+    "live55_tcp_replay": {
+      "input": "existing live55 first transcripts, no ASR rerun",
+      "first_attempts": 55,
+      "human_retry_excluded": 1,
+      "execution_intents": 24,
+      "NONE": 16,
+      "DROP": 15,
+      "negative_execution_intents": 0,
+      "wire_schema_failures": 0,
+      "operational_hardware_control": false
+    },
+    "mac_saved_wav_to_isolated_core": {
+      "input": "2 saved ReSpeaker WAVs -> VAD -> actual SenseVoice -> TCP proxy -> actual SafetyCore",
+      "input_transform": "each saved WAV plus 1 second zero tail to provide required VAD endpoint; speech samples unchanged",
+      "asr": 2,
+      "hello": 1,
+      "voice": 2,
+      "Core_voice_results": [
+        {
+          "last_intent": "FAN_SET",
+          "value": 1,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "last_intent": "IND_OFF",
+          "value": null,
+          "accepted": true,
+          "reason": null
+        }
+      ],
+      "schema_failures": 0,
+      "physical_mic_used": false,
+      "i2c": "none",
+      "fan_uart": "none",
+      "cook_uart": "none",
+      "operational_hardware_control": false
+    },
+    "pi5_saved_wav_to_isolated_core": {
+      "input": "Pi5: 2 saved ReSpeaker WAVs -> VAD -> SenseVoice -> SSH reverse tunnel -> isolated host SafetyCore",
+      "input_transform": "each saved WAV plus 1 second zero tail to provide required VAD endpoint; speech samples unchanged",
+      "asr": 2,
+      "hello": 1,
+      "voice": 2,
+      "Core_voice_results": [
+        {
+          "last_intent": "FAN_SET",
+          "value": 1,
+          "accepted": true,
+          "reason": null
+        },
+        {
+          "last_intent": "IND_OFF",
+          "value": null,
+          "accepted": true,
+          "reason": null
+        }
+      ],
+      "schema_failures": 0,
+      "physical_mic_used": false,
+      "i2c": "none",
+      "fan_uart": "none",
+      "cook_uart": "none",
+      "operational_hardware_control": false
+    },
+    "pi5_vad_estimated_end_to_send_ms": [
+      815,
+      810
+    ],
+    "official_audio_end_latency_verified": false,
+    "arm_binary_sha256": "4c7d2327e38dae55b0a604b6c31c0066b6ecdd1fae5c18ca18ba3c0baf0eb29a",
+    "operating_binary_backed_up_and_updated": true,
+    "initial_missing_tcp_test_packaging_failure_preserved": true,
+    "raw_log_sha256": {
+      "asr-publish.log": "cf7dc54f66c9c6de37552aad07aaf37a367a1dc83b922e95518eacf04b1f970e",
+      "core.log": "ae264ef8033dfb20ec41eb6968c62e5c70e00f16d88f3677e04236a55afeaebe",
+      "pi5-asr-publish.log": "e5f686a9fe1216027aea217bf542c07292f1e9488399bdd2098e8dbaf3a2cf0d",
+      "pi5-core.log": "feef9bcb7bfd30feeead9942cc00e8dea18a061415418dc9e4d38fcdf1547150"
+    },
+    "source_sha256": {
+      "voice_node/src/audio_observer.cpp": "a1aa2ee8086c095f9a9b97076bb8bf97d7bf64fdc6872dda085e3e717da10338",
+      "voice_node/src/hi_lg_classifier.h": "e15d364169ac78c4e9f42d7d5a68ad44be7014f399bb8a3b973b3511b1a8b7a7",
+      "voice_node/tests/hi_lg_classifier_test.cpp": "214751bd11c1eaa54cc0f8b08a31a19f5c241b295898bc225b7d5fa8ca87ca5e",
+      "voice_node/tests/voice_tcp_test_client.cpp": "659ee6dae3bb994a2fd784269ce7be1495ab030e65ff1cb705f1a6a08a9c1398",
+      "voice_node/tests/voice_tcp_receiver_test.py": "57fbf491b343a7e0ef782043726571c4a8f62a56f9a4c348e42d0e274bbdf85b"
+    },
+    "preflight": {
+      "voice_service": "inactive",
+      "recording_streams": 0,
+      "respeaker_source_present": true,
+      "operating_core_start": "held by user"
+    },
+    "nam_hyeonji_live25": {
+      "condition": "fan_on_noise",
+      "planned": 25,
+      "completed": 0,
+      "practice_asr_excluded": 18,
+      "official_nfr08": false,
+      "microphone_start": "user button only"
+    },
+    "historical_60_question_labels_preserved": true
+  },
+  "pm_policy_20261024": {
+    "decision_url": "https://github.com/lambdaramji/HOOD-SEEK/pull/107#pullrequestreview-5637198979",
+    "approved_parameters": {
+      "activation": 0.6,
+      "target": 0.6,
+      "action": 0.7,
+      "margin": 0.1,
+      "vad_start_ms": 224,
+      "vad_end_ms": 544,
+      "model": "SenseVoiceSmall INT8"
+    },
+    "fan_on": "FAN_SET value1; Core fan_min unchanged",
+    "targetless_off": "NONE",
+    "short_direct_questions": "commands; permission/state/negative/quote/compound remain non-executable",
+    "wire_conf": 0,
+    "negative_required": 36,
+    "ambient_required_s": 300,
+    "publication_gate": "same frozen configuration; zero execution candidates in both prechecks before formal25 publication",
+    "formal_success": "first intent/value match AND audio-end latency<=3000ms AND if publishing matched Core accepted=true; do not compare fan.level",
+    "contract_reviewer_approval_pending": true,
+    "mac_ctest": {
+      "passed": 8,
+      "failed": 0,
+      "loopback_s": 32.34,
+      "total_s": 33.17
+    },
+    "pi5_native": {
+      "parser": 8206,
+      "audio": 1559,
+      "hi_lg": 179,
+      "tcp": 60,
+      "failures": 0
+    },
+    "field_evaluation_checks": 19,
+    "plan_text_checks": 63,
+    "arm_binary_sha256": "2beedc52474cffce629f5818c1cfe223f6ade56417baab9668aa57bb891728c8",
+    "model_sha256": {
+      "model.int8.onnx": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51",
+      "tokens.txt": "f449eb28dc567533d7fa59be34e2abca8784f771850c78a47fb731a31429a1dc",
+      "ggml-silero-v6.2.0.bin": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987"
+    },
+    "official_trials_started": false,
+    "physical_hardware_control": false,
+    "source_sha256": {
+      "voice_node/src/audio_observer.cpp": "c832fa191938a96a79767748c31d26b99fa7f68718c6fa1d2fd5e36876f36726",
+      "voice_node/src/hi_lg_classifier.h": "7c54edab8ff715038b081b769876be4068882f74d0e71c14eb052570022ce41c",
+      "voice_node/src/hi_lg_rules.h": "67232cd2785223aa591d0d2e3886233ee645d3d5363050d242982c6b74ec6857",
+      "voice_node/src/voice_tcp.cpp": "878296f30f4fdcdf36ac39d5ac98990264a54eebec7056597f184d03945fe7a9"
+    }
+  }
+}

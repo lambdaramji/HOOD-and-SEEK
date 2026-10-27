@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hoodseek.local/contracts/voice.schema.json",
+  "title": "HOOD&SEEK TCP voice v1·v2",
+  "description": "voice-node → SafetyCore, 인식 완료마다. v2는 IND_SET(value 1..3)을 추가한다(#182). FAN_SET도 value 1..3, 나머지 intent에는 value 없음. v1의 7종은 그대로 받는다. 유효 기간 5 s(수신 시각 기준).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "type", "src", "seq", "t_ms", "p"],
+  "properties": {
+    "v": { "enum": [1, 2] },
+    "type": { "const": "voice" },
+    "src": { "const": "voice" },
+    "seq": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+    "t_ms": { "type": "integer", "minimum": 0 },
+    "p": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["intent", "text", "conf"],
+      "properties": {
+        "intent": { "enum": ["FAN_SET", "FAN_OFF", "IND_OFF", "IND_ON", "IND_UP", "IND_DOWN", "NONE", "IND_SET"] },
+        "value": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "text": { "type": "string", "maxLength": 200 },
+        "conf": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "if": { "properties": { "intent": { "enum": ["FAN_SET", "IND_SET"] } } },
+      "then": { "required": ["value"] },
+      "else": { "not": { "required": ["value"] } }
+    }
+  },
+  "if": { "properties": { "v": { "const": 1 } } },
+  "then": { "properties": { "p": { "properties": { "intent": { "not": { "const": "IND_SET" } } } } } }
+}

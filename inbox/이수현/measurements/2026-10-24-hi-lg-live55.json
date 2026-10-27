@@ -1,0 +1,249 @@
+{
+  "status": "completed_live_observation_audit_not_official_NFR08",
+  "source_sha256": "5851c9006940b7b535dacdf3e3f939b6a00dfd72fa6d45992d41095d22cba64f",
+  "snapshot_bytes": 333161,
+  "node_phase_at_snapshot": "listening",
+  "actual_voice_transmission": 0,
+  "config": {
+    "event": "recognition_config",
+    "model": "sensevoice",
+    "decoder": "greedy",
+    "language": "ko",
+    "use_itn": "1",
+    "retry_limit": "0",
+    "conf_kind": "unavailable",
+    "parser": "hi_lg_jamo",
+    "fan_on_default_level": "1",
+    "activation_min": "0.60",
+    "target_min": "0.60",
+    "action_min": "0.70",
+    "margin": "0.10"
+  },
+  "event_counts": {
+    "vad_model_loaded": 1,
+    "model_loaded": 1,
+    "recognition_config": 1,
+    "capture_ready": 1,
+    "audio_level": 2510,
+    "asr_started": 93,
+    "asr": 93,
+    "vad_drop": 1
+  },
+  "mapping": {
+    "negative_asr_indices": [
+      37,
+      66
+    ],
+    "positive_first_attempt_indices": [
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92
+    ],
+    "additional_asr_index": 82,
+    "additional_explanation": "P15 human retry, confirmed by user; excluded from first-attempt denominator"
+  },
+  "negative": {
+    "trials": 30,
+    "execution_candidates": 0,
+    "intent_counts": {
+      "DROP": 15,
+      "NONE": 15
+    },
+    "asr_ms": {
+      "min": 190.0,
+      "max": 680.0,
+      "mean": 430.43333333333334,
+      "median": 422.5,
+      "p95_nearest_rank": 673.0
+    },
+    "end_to_intent_ms": {
+      "min": 746.0,
+      "max": 1230.0,
+      "mean": 982.0,
+      "median": 975.5,
+      "p95_nearest_rank": 1226.0
+    }
+  },
+  "positive": {
+    "first_attempts": 25,
+    "matches": 24,
+    "rate": 0.96,
+    "failed_trial_ids": [
+      "P15"
+    ],
+    "expired": 0,
+    "estimate_over_3000ms": 0,
+    "asr_ms": {
+      "min": 212.0,
+      "max": 537.0,
+      "mean": 405.44,
+      "median": 408.0,
+      "p95_nearest_rank": 527.0
+    },
+    "end_to_intent_ms": {
+      "min": 765.0,
+      "max": 1087.0,
+      "mean": 957.24,
+      "median": 964.0,
+      "p95_nearest_rank": 1083.0
+    },
+    "accuracy_scope": "최초 실행 intent/value 일치; 전사 WER/CER 또는 하드웨어 집행 정확도 아님"
+  },
+  "per_function": {
+    "FAN_SET 3": {
+      "matched": 5,
+      "trials": 5
+    },
+    "FAN_SET 2": {
+      "matched": 5,
+      "trials": 5
+    },
+    "FAN_SET 1": {
+      "matched": 5,
+      "trials": 5
+    },
+    "FAN_OFF": {
+      "matched": 5,
+      "trials": 5
+    },
+    "IND_OFF": {
+      "matched": 4,
+      "trials": 5
+    }
+  },
+  "limits": [
+    "Live observation only; no TCP transmission or hardware acceptance tested.",
+    "end_to_intent_ms is estimated from VAD endpoint, not manually verified acoustic utterance end.",
+    "Speaker was Suhyun, not the official designated speaker Nam Hyeonji; distance changed and independent 300-second silence/noise test was not performed.",
+    "No new original audio capture configured in this run.",
+    "Previously known short-question false positives are not cleared by these 30 different negative sentences."
+  ],
+  "notes": [
+    "One max4s drop occurs before N01 and is excluded from the 55 trial interval.",
+    "Earlier exploratory commands before N01 are excluded.",
+    "ASR indices alone are not trial identifiers; sentence text, order and explicit extra retry are retained."
+  ],
+  "test_date_kst": "2026-10-24",
+  "user_confirmed": {
+    "speaker": "이수현",
+    "fan": "off",
+    "distance": "30cm at start; later more than 1m; exact transition unknown",
+    "only_retry": "P15; confirmed by user",
+    "silence_noise_300s_performed": false,
+    "incidental_gaps": "User reports intermittent gaps with no recognition; not a controlled 300-second noise test",
+    "other_noise": "not specified"
+  },
+  "time_windows_kst": {
+    "negative_first_last_result": [
+      "11:11:24",
+      "11:14:09"
+    ],
+    "positive_first_last_result": [
+      "11:14:23",
+      "11:16:55"
+    ],
+    "note": "Page receipt timestamps, not utterance start/end timestamps"
+  },
+  "binary_sha256": "7eb1d0840d0edc3f5e30605bc1c64827a5e72e891cbe45f4d3e59fc1b5ee5e87",
+  "vad": {
+    "threads": 1,
+    "start_ms": 224,
+    "end_ms": 544,
+    "pre_roll_ms": 992,
+    "max_utterance_s": 4
+  },
+  "pm_status": {
+    "negative_30": "0/30 executable candidates in this live trial",
+    "official_25": "not the designated speaker; 24/25 first-attempt matches are diagnostic evidence",
+    "latency": "all 25 decision estimates below 3 seconds; actual acoustic-end latency not certified",
+    "silence_noise_300s": "후속 조용150초·팬/유튜브150초 실측, 실행 후보0; 별도 두 세션",
+    "known_short_question_false_positives": "not retested by this list",
+    "hardware_integration": "not tested; actual publication off",
+    "policy_review": "this audit does not constitute PM or contract approval",
+    "fan_direction_state_policy": "현지·정인·재범 검토 요청; 스키마/Core 구현 변경 없음"
+  },
+  "silence_noise_waiver": {
+    "status": "historical_waiver_superseded_by_followup_measurement",
+    "request_date_kst": "2026-10-24",
+    "statement": "5분 소음/무음 측정은 생략으로 할게. 승인 받음",
+    "measured": false,
+    "passed": null,
+    "scope": "55문항 종료 시점의 생략 기록을 보존. 이후 사용자의 새 요청으로 실제300초를 추가 측정함."
+  },
+  "overall": {
+    "matched_trials": 54,
+    "trials": 55,
+    "rate": 0.9818181818181818
+  },
+  "post_change_text_replay": {
+    "negative_execution_candidates": 0,
+    "negative_trials": 30,
+    "positive_matches": 24,
+    "positive_trials": 25,
+    "unchanged_original_decisions": 56,
+    "segi_fixed": 7,
+    "segi_trials": 7,
+    "new_audio_or_asr_rerun": false,
+    "remaining_failed_trial": "P15: 꺼→거; not changed"
+  },
+  "post_change_binary_sha256": "70514cb20603918a1bca26a6cc1096cb97ee135aa2d0f4ee1a4d358bc1566d7b",
+  "verification": {
+    "host_release_ctest": "7/7 passed; loopback 32.27s",
+    "host_hi_lg_checks": 98,
+    "pi5_parser_checks": 8206,
+    "pi5_audio_checks": 1559,
+    "pi5_hi_lg_checks": 98,
+    "pi5_asr_option_checks": 6,
+    "new_live_audio_after_change": false
+  },
+  "vad_thread_comparison": {
+    "same_input_duration_s": 39.968,
+    "boundaries_equal": true,
+    "one_thread_frame_mean_ms": 0.4185101017,
+    "one_thread_frame_max_ms": 1.582592,
+    "four_thread_frame_mean_ms": 1.896772629,
+    "four_thread_frame_max_ms": 216.839685,
+    "short_live_windows": {
+      "before_wall_s": 12.017,
+      "before_processed_audio_s": 3.84,
+      "before_asr_count": 0,
+      "after_wall_s": 12.013991708052345,
+      "after_processed_audio_s": 11.52,
+      "after_asr_count": 1
+    },
+    "not_matched_idle_power_measurement": true
+  },
+  "ambient_followup": {
+    "measured": true,
+    "selected_s": 300,
+    "execution_candidates": 0,
+    "segments": [
+      "quiet150",
+      "fan_and_YouTube150"
+    ],
+    "separate_runs": true,
+    "report": "2026-10-24-voice-ambient300-validation.md"
+  }
+}

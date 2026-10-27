@@ -1,0 +1,5 @@
+mac_epoch_at_start=1792826714
+pi_epoch_at_start=1790840226
+safetycore_sha256=
+16eb838eee03b4389143a79a82777f1cf8e72837dc1165bc609e20c83f5b5201  /data/share/usr/atlas/services/com.atlas.HoodSeekSafetyCore1/safetycore
+events_fix=치(1790841149)를 치움으로 고침, 1790841183 치움(재입력)은 뺌 — 원본 events.raw.csv (정인 보고)

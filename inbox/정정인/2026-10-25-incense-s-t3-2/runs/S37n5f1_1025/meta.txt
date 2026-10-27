@@ -1,0 +1,15 @@
+start_epoch_pi=1790924901.536
+pi_date=2026-10-02 16:08:21 +0900
+mac_epoch_at_launch=1792912185
+max_s=900
+fan_start=1
+pi_minus_mac_s=-1987283.5
+baseline_pm25=10.76
+baseline_n=55
+end_sec=584.7
+sps_rows=586
+sat=264
+crc_bad=0
+restart=0
+fan_ack=573
+fan_failsafe_lines=0

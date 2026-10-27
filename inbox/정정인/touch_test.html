@@ -1,0 +1,135 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>터치 확인</title>
+<style>
+  :root{--bg:#0d0f14;--panel:#161a22;--line:#262c38;--fg:#e6e9ef;--dim:#8a93a6;--ok:#38d39f;--acc:#ffb020}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--fg);
+    font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;touch-action:none;user-select:none}
+  #bar{display:flex;flex-wrap:wrap;gap:6px 14px;padding:7px 10px;background:var(--panel);
+    border-bottom:1px solid var(--line);font-size:12px}
+  #bar b{color:var(--acc);font-weight:600}
+  #bar span{color:var(--dim)}
+  #stage{position:relative;height:calc(100% - 132px);overflow:hidden}
+  .tgt{position:absolute;width:74px;height:74px;border:2px dashed var(--line);border-radius:10px;
+    display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:12px;text-align:center}
+  .tgt.hit{border-style:solid;border-color:var(--ok);color:var(--ok);background:rgba(56,211,159,.12)}
+  #c1{top:8px;left:8px} #c2{top:8px;right:8px} #c3{bottom:8px;left:8px} #c4{bottom:8px;right:8px}
+  #c5{top:50%;left:50%;transform:translate(-50%,-50%)}
+  .dot{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;
+    border:2px solid var(--acc);pointer-events:none}
+  .dot.mouse{border-color:#4aa3ff}
+  #hint{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);margin-top:64px;
+    color:var(--dim);text-align:center;pointer-events:none;font-size:12px}
+  #log{height:132px;overflow:hidden;background:var(--panel);border-top:1px solid var(--line);padding:6px 10px}
+  #log div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .t-touch{color:var(--ok)} .t-mouse{color:#4aa3ff} .t-pen{color:#c58cff}
+  #reset{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:#11151d;
+    color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:9px 18px;font:inherit}
+</style>
+
+<div id="bar">
+  <div>화면 <b id="scr">-</b></div>
+  <div>창 <b id="win">-</b></div>
+  <div>DPR <b id="dpr">-</b></div>
+  <div>maxTouchPoints <b id="mtp">-</b></div>
+  <div>동시접촉 <b id="live">0</b></div>
+  <div>터치 <b id="nt">0</b> · 마우스 <b id="nm">0</b></div>
+  <div><span>ontouchstart</span> <b id="ots">-</b></div>
+</div>
+
+<div id="stage">
+  <div class="tgt" id="c1">좌상</div>
+  <div class="tgt" id="c2">우상</div>
+  <div class="tgt" id="c3">좌하</div>
+  <div class="tgt" id="c4">우하</div>
+  <div class="tgt" id="c5">중앙</div>
+  <div id="hint">네 모서리와 중앙을 차례로 눌러 5칸을 모두 초록으로 만드세요.<br>
+    누른 위치와 표시되는 원이 어긋나면 좌표 매핑 문제입니다.</div>
+  <button id="reset">초기화</button>
+</div>
+
+<div id="log"></div>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage'), log=document.getElementById('log');
+  var nt=0, nm=0, live=0;
+
+  document.getElementById('scr').textContent=screen.width+'x'+screen.height;
+  document.getElementById('dpr').textContent=window.devicePixelRatio;
+  document.getElementById('mtp').textContent=(navigator.maxTouchPoints!==undefined?navigator.maxTouchPoints:'없음');
+  document.getElementById('ots').textContent=('ontouchstart' in window)?'있음':'없음';
+  function win(){document.getElementById('win').textContent=innerWidth+'x'+innerHeight;}
+  win(); addEventListener('resize',win);
+
+  function line(txt,cls){
+    var d=document.createElement('div'); d.className=cls||''; d.textContent=txt;
+    log.insertBefore(d,log.firstChild);
+    while(log.childNodes.length>8) log.removeChild(log.lastChild);
+  }
+  function mark(x,y,kind){
+    var r=stage.getBoundingClientRect();
+    var d=document.createElement('div');
+    d.className='dot'+(kind==='mouse'?' mouse':'');
+    d.style.left=(x-r.left)+'px'; d.style.top=(y-r.top)+'px';
+    stage.appendChild(d);
+    setTimeout(function(){d.remove();},1400);
+    var el=document.elementFromPoint(x,y);
+    if(el&&el.classList.contains('tgt')) el.classList.add('hit');
+  }
+  function rec(type,kind,x,y,extra){
+    if(kind==='touch') nt++; else if(kind==='mouse') nm++;
+    document.getElementById('nt').textContent=nt;
+    document.getElementById('nm').textContent=nm;
+    line(type+'  '+kind+'  x='+Math.round(x)+' y='+Math.round(y)+(extra||''),'t-'+kind);
+    mark(x,y,kind);
+  }
+
+  // Pointer Events — 브라우저가 지원하면 이것만으로 충분합니다
+  if(window.PointerEvent){
+    stage.addEventListener('pointerdown',function(e){
+      live++; document.getElementById('live').textContent=live;
+      rec('pointerdown',e.pointerType,e.clientX,e.clientY,'  id='+e.pointerId+' p='+(e.pressure||0).toFixed(2));
+    });
+    stage.addEventListener('pointermove',function(e){
+      if(e.buttons) mark(e.clientX,e.clientY,e.pointerType);
+    });
+    function up(e){ live=Math.max(0,live-1); document.getElementById('live').textContent=live; }
+    stage.addEventListener('pointerup',up);
+    stage.addEventListener('pointercancel',up);
+  }
+
+  // Touch Events — Pointer Events가 없거나 터치만 따로 확인할 때
+  stage.addEventListener('touchstart',function(e){
+    document.getElementById('live').textContent=e.touches.length;
+    if(!window.PointerEvent){
+      var t=e.touches[0]; rec('touchstart','touch',t.clientX,t.clientY,'  동시='+e.touches.length);
+    } else {
+      line('touchstart  동시='+e.touches.length,'t-touch');
+    }
+  },{passive:true});
+  stage.addEventListener('touchend',function(e){
+    document.getElementById('live').textContent=e.touches.length;
+  },{passive:true});
+
+  // Mouse — Pointer Events 미지원 브라우저용
+  if(!window.PointerEvent){
+    stage.addEventListener('mousedown',function(e){ rec('mousedown','mouse',e.clientX,e.clientY); });
+  }
+
+  document.getElementById('reset').addEventListener('click',function(e){
+    e.stopPropagation();
+    nt=nm=live=0;
+    document.getElementById('nt').textContent='0';
+    document.getElementById('nm').textContent='0';
+    document.getElementById('live').textContent='0';
+    log.innerHTML='';
+    var g=document.querySelectorAll('.tgt');
+    for(var i=0;i<g.length;i++) g[i].classList.remove('hit');
+  });
+
+  addEventListener('contextmenu',function(e){e.preventDefault();});
+})();
+</script>

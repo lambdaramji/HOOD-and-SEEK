@@ -1,0 +1,30 @@
+title	labels	milestone	assignee	body
+[T1] Pi 4 uart3·uart5 overlay 적용 후 /dev/ttyAMA* 번호 실측	type: measurement,track: T1 safety-core,Must,needs-hardware	G1 환경·계약 동결	ImymemineJ	설계서 §4.5 [추정] /dev/ttyAMA1·ttyAMA2 확인. `ls -l /dev/ttyAMA*` 부팅 후 출력 원문을 남긴다. 닫는 항목: R-05. 실패 시 uart0 콘솔 양보안 검토.
+[T1] MLX90640·SPS30·DS3231 I2C 3장치 동시 읽기 실측	type: measurement,track: T1 safety-core,Must,needs-hardware	G1 환경·계약 동결	ImymemineJ	설계서 §1 D-18, §3.1. 2 Hz·1 Hz 동시 polling 시 버스 충돌·지연 여부. `i2cdetect -y 1` 출력과 10분 연속 읽기 로그.
+[T1] ipk 설치 후 재부팅 자동 기동 여부 실측 (Q-S10-1)	type: measurement,track: T1 safety-core,Must,needs-hardware	G1 환경·계약 동결	ImymemineJ	설계서 §8.2 Q-S10-1. 설치 → 재부팅 → `busctl list | grep HoodSeek`. 안 뜨면 systemd `Restart=always` 폴백으로 D-결정. 닫는 항목: R-08.
+[T1] SafetyCore 골격: I2C 스레드 + TCP :7420 서버 + 콘솔 state 출력	type: task,track: T1 safety-core,Must	G1 환경·계약 동결	ImymemineJ	설계서 §5.1 스레드 구성. `arc create safety_core -t native-service` 템플릿 위에 소스 이식. 완료 기준: Pi 5에서 `nc <Pi4> 7420`로 hello 보내면 state 1회 즉시 + 2 Hz 수신.
+[T1] UART×2 송신 + 1 s 재전송 + ACK 2 s 타임아웃 → state.fan.ack	type: task,track: T1 safety-core,Must	G2 1차 통합	ImymemineJ	설계서 §4.1. heartbeat 별도 명령 없이 목표 명령 재전송. ACK 없으면 reason FAN_NOACK/IND_NOACK.
+[T2] 판정 상태기계 Policy::tick 구현 + PC 단위 테스트 (하드웨어 없음)	type: task,track: T2 policy,Must,safety-invariant	G2 1차 통합	lambdaramji	설계서 §3 전이표·§5.1 Policy 인터페이스. `tests/policy_test.cpp`: 입력 시퀀스 → 기대 (hazard,presence,lock,fan_level). 분기 순서 = 우선순위 불변식 유지. CI system.yml에 포함.
+[T2] profiles/default.json 초기값 + SIGHUP 재로드	type: task,track: T2 policy,Must	G2 1차 통합	lambdaramji	설계서 §3.3 초기값(PR #40 실측). 코드에 숫자를 박지 않는다. 10/23 G3에서 수치만 갱신.
+[T2] 10/23 임계값 재실측: 손난로·인센스·가습기 → default.json 확정	type: measurement,track: T2 policy,Must,needs-hardware	G3 임계값 확정	lambdaramji	설계서 §3.3 "10/23 재실측 후 확정". T_metric 경계 16/22/30, tsize 0.49, PM_delta +30/+50, 히스테리시스 5 s/10 s. 닫는 항목: R-06, R-13. 결과는 docs/ 실측 문서로.
+[T3] 팬 ESP32 펌웨어 Serial2(GPIO16/17)로 전환 (Q-S6-1)	type: task,track: T3 esp32,Must,needs-hardware	G2 1차 통합	ImymemineJ	설계서 §4.2. 프로토콜 변경 없음, 전송 경로만 USB→GPIO UART. `pio run` CI 통과 + 실기기 ACK 확인.
+[T3] 쿡탑 ESP32 펌웨어 신규: IND/LOCK/STAT + 3 s fail-safe + WS2812B 표현	type: task,track: T3 esp32,Must,needs-hardware	G2 1차 통합	ImymemineJ	설계서 §4.3·§4.4. 부팅 fail-safe, 명령 끊기면 OFF+잠금 표시(D-21). 버튼 유무는 Q-S7-1 답변 후. `firmware/esp32_cooktop/` PlatformIO.
+[T3] 5 V 전원 점검: LED 판 분리 전원 ≥5 A, 밝기 ≤30 %	type: measurement,track: T3 esp32,Must,needs-hardware	G1 환경·계약 동결	Jik-Kim	D-27, R-10. 실측: Pi 5 27 W 단독, LED 전원 분리, 풀 점등 시 리부팅·깜빡임 없음.
+[T4] vision-node: V4L2 캡처 + ECO.AI YOLOX → TCP vision 메시지 발행	type: task,track: T4 vision,Must,needs-hardware	G2 1차 통합	Jik-Kim	설계서 §5.2. fork 9/20 V4L2 fix 이식. 디바운스·누적값 없이 추론마다 1회 발행(불변식). roi_overlap 계산, config/roi.json.
+[T4] 고양이 인형 cat 검출 + 비스듬 각도 person 검출 1차 실측	type: measurement,track: T4 vision,Should,needs-hardware	G1 환경·계약 동결	Jik-Kim	R-03. 각도별 검출률 표. 실패 시 임계 하향 → 10/21 2차 → 그래도 실패면 M9 영상 제외.
+[T4] Cooking/Idle 시분할 (state 구독 기반)	type: task,track: T4 vision,Could	G5 Should 통합	Jik-Kim	설계서 §5.2 [제안]. CPU 여유 확보용. Must 완료 후에만.
+[T5] whisper.cpp 크로스 빌드 스파이크 (-DGGML_NATIVE=OFF)	type: task,track: T5 voice,Should	G1 환경·계약 동결	suuuhululu	설계서 §5.3, R-02. 10/20 18:00 성공 판정. 실패 시 10/21 재시도, 10/22에도 실패면 노드 삭제·터치 폴백(D-12).
+[T5] voice-node: PulseAudio → VAD → whisper → 정규식 intent → TCP voice 발행	type: task,track: T5 voice,Should,needs-hardware	G2 1차 통합	suuuhululu	설계서 §5.3. "후드" 접두어 필터, intent allowlist 7종. 거부 피드백은 Flutter가 state.voice로 처리.
+[T6] Flutter: TCP 클라이언트 + LineSplitter + state JSON 파서 + 3 s 끊김 화면	type: task,track: T6 flutter,Must	G1 환경·계약 동결	jaebeom	설계서 §5.4. MQTT 코드 제거 → tcp_feed.dart. `--dart-define=CORE_HOST`. 판단 로직 없음: 색·문구는 state 매핑만.
+[T6] Flutter: 상태 배너·사유 칩·팬 패널·인덕션 패널 + ui_cmd 전송	type: task,track: T6 flutter,Must	G2 1차 통합	jaebeom	설계서 §5.4 화면 ①②④⑤. allowed_on=false면 버튼 비활성. reasons 코드→한국어 표.
+[T6] Flutter: alert 변화 시 클립 재생 + 온도·PM 60 s 그래프	type: task,track: T6 flutter,Must	G3 임계값 확정	jaebeom	설계서 §5.4 화면 ③⑥, D-14. assets/audio/<alert>.wav. alert 값이 바뀔 때만 재생.
+[T6] flutter-atlas ipk 패키징	type: task,track: T6 flutter,Should	G5 Should 통합	jaebeom	설계서 §8.2. `flutter-atlas build atlas --ipk --release --dart-define=CORE_HOST=…`. 실패 시 R-09 폴백.
+[T7] contracts/ v1 스키마 5종 + examples + 검증 테스트 (10/20 18:00 동결)	type: task,track: T7 integration,Must,contract-change	G1 환경·계약 동결	lambdaramji	설계서 §2. hello/vision/voice/ui_cmd/state 스키마와 예제. 동결 후 변경은 PR + v 증가 + 양쪽 파서.
+[T7] 저장소 S10 레이아웃 전환: MQTT 세대 코드 docs/archive 이동	type: task,track: T7 integration,Must	G1 환경·계약 동결	jaebeom	설계서 §8.1. packages/hood_seek_protocol, pi5_gateway, pi4_sensor_node → 아카이브. README·CLAUDE.md 아키텍처 절·CI 경로 갱신. ARCHIVE_POLICY 절차 따름.
+[T7] 1차 통합: Pi4↔Pi5↔ESP32×2 전 링크 연결 리허설	type: task,track: T7 integration,Must,needs-hardware	G2 1차 통합	lambdaramji	D-29 10/22. state 수신, ui_cmd 집행, UART ACK, F1·F3·F4 fail-safe 실증. 결과는 실측 이슈로.
+[T7] Must 시나리오 리허설 M1·M2·M3·M6·M7·M8·M10	type: task,track: T7 integration,Must,needs-hardware	G4 Must 시나리오 완료	lambdaramji	설계서 §7. 시나리오별 자극→기대 전이→확인 수단 체크. 미달 시 10/25 Should 삭제.
+[T7] Should 통합: M9 고양이 → M11 Pi 4 전원 차단 → 음성 M4·M5	type: task,track: T7 integration,Should,needs-hardware	G5 Should 통합	lambdaramji	설계서 §7, §6 F1. 순서 고정(고양이 > 전원 > 음성).
+[T7] E2E 3회 연속 리허설 → 기능 동결 선언	type: task,track: T7 integration,Must,needs-hardware	G6 기능 동결·E2E	lambdaramji	D-29 10/26 18:00. 이후 버그 수정만. 코드 프리즈 태그 전 README·CLAUDE.md 최신화.
+[T7] public 전환 전 삭제 목록 처리 (REF/**, LG 원문 인용, 사진 개인정보)	type: task,track: T7 integration,Must	G7 코드 프리즈·제출	lambdaramji	설계서 §8.3, R-16, P-010. docs/의 LG 회신 인용은 결론만 남김. 10/27 프리즈 전 완료.
+[결정] Q-S5-1 고양이 잠금 시 화력: A 유지 / B 즉시 0단	type: decision,needs-decision,track: T2 policy,Must	G1 환경·계약 동결	lambdaramji	설계서 §3.6. 권장 B. 결정권자 남현지. 10/20 18:00까지 미응답 시 B로 진행.
+[결정] Q-S7-1 쿡탑 ESP32 물리 버튼 유무	type: decision,needs-decision,track: T3 esp32,Should	G1 환경·계약 동결	ImymemineJ	설계서 §4.3 EVT BTN. 확인: 정정인. 버튼 없으면 EVT 라인 삭제.

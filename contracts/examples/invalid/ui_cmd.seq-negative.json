@@ -1,0 +1,1 @@
+{"v": 1, "type": "ui_cmd", "src": "ui", "seq": -1, "t_ms": 5000, "p": {"cmd": "FAN_SET", "value": 2}}
